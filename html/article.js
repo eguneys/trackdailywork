@@ -2,6 +2,12 @@ let { layout } = require('./base');
 let tags = require('./tags');
 let helper = require('./helper');
 
+let {
+  ligame,
+  ligif,
+  ainfo
+} = helper;
+
 module.exports = (article) => {
 
   let data = article.content;
@@ -29,25 +35,3 @@ data
     moreCss: helper.cssTag('article')
   });
 };
-
-function ainfo(article) {
-  return tags.div({ cls: ['info'] }, [
-    tags.date([article.date]),
-    ` • ${article.time} • ${article.rated?'Rated':'Casual'} • `,
-    tags.a({ href: liuser(article.white) }, [article.white]),
-    ' vs ',
-    tags.a({ href: liuser(article.black) }, [article.black]),
-  ]);
-}
-
-function liuser(user) {
-  return 'https://lichess.org/@/' + user;
-}
-
-function ligame(game) {
-  return `https://lichess.org/${game}`;
-}
-
-function ligif(game) {
-  return `https://lichess1.org/game/export/gif/${game}.gif`;
-}

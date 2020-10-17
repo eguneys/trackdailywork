@@ -1,3 +1,4 @@
+import { json, form } from 'common/xhr';
 import modal from 'common/modal';
 
 export default function(opts) {
@@ -9,6 +10,19 @@ export default function(opts) {
   opts.$_ = $_;
   editor = window['ChessIsEditor'].app(opts);
 
+  let $review = document.getElementById('review');
+
+  $review.addEventListener('click', e => {
+    e.preventDefault();
+
+    json($review.href, {
+      method: 'post',
+      body: form({content: editor.content})
+    }).then(redirect => {
+      cishard.redirect(redirect);
+    });
+    
+  });
 
   let $help = document.getElementById('help');
 

@@ -50,7 +50,7 @@ function siteHeader(buttons) {
   return tags.header({ id: 'top' }, [
     tags.div({ cls: 'site-title-nav' }, [
       tags.h1({ cls: 'site-title' }, [
-        tags.a({ href: "/" }, ['Chess Is Hard']
+        tags.a({ href: "/" }, ['📘 Chess Is Hard']
               )
       ])
     ]),

@@ -9,6 +9,7 @@ Continue from black's move <3... d6 4. a3 a6> `),
     tags.p(`To embed a chess board use ply number like:`),
     tags.p(`=8`),
     tags.br(),
-    tags.p(`Happy blogging`)
+    tags.p(`To publish your article click Review first, then publish.`),
+    tags.p(`Happy blogging 📘`)
   ]);
 };

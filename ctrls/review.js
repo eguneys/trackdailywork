@@ -1,9 +1,9 @@
 let html = require('../html');
 
-module.exports = function(req, res) {
+module.exports.get = function(req, res) {
 
-  let article = {
-    title: 'English Defense Reversed',
+  let review = {
+    title: 'Add a title',
     date: 'September 2020',
     gameid: 'tBBd0Uws',
     time: '30+0',
@@ -28,7 +28,20 @@ I exchange queens and develop
 
 Full game reference: 
 `
-  };
+  };  
 
-  res.send(html.article(article));
+  res.send(html.review(review));
+
+};
+
+module.exports.post = function(req, res) {
+
+  res.json({
+    url: '/review',
+    cookie: {
+      name: 'rk2',
+      maxAge: 604800,
+      value: 'anonuser'
+    }
+  });
 };

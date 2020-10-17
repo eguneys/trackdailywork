@@ -14,7 +14,7 @@ module.exports = ({
   mode: 'development'
 }, {
   output: {
-    path: path.resolve(__dirname, '../../public/compiled'),
+    path: path.resolve(__dirname, '../../../public/compiled'),
     filename: `${output}.min.js`,
     library
   },

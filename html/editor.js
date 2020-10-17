@@ -12,7 +12,7 @@ module.exports = (draft) => {
     chessmd: true,
     buttons: tags.frag([
       tags.div([
-        tags.a({ id: 'review', cls: 'link' }, [
+        tags.a({ href: '/review', id: 'review', cls: 'link' }, [
           'Review'
         ])
       ]),

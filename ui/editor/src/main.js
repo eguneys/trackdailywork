@@ -7,6 +7,9 @@ export function app(opts) {
 
   CisEditor(opts.$_, {content: data.draft});
 
+  return {
+    content: `ui/editor/main/content`
+  };
 }
 
 export { boot };
