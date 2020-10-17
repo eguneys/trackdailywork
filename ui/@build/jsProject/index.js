@@ -1,19 +1,23 @@
 const path = require('path');
 
-module.exports = (library, outfile) => [{
+module.exports = ({
+  input = './src/main.js',
+  library,
+  output
+}) => [{
   output: {
     path: path.resolve(__dirname, '../../../public/compiled'),
-    filename: `${outfile}.js`,
+    filename: `${output}.js`,
     library
   },
-  entry: './src/main.js',
+  entry: input,
   mode: 'development'
 }, {
   output: {
     path: path.resolve(__dirname, '../../public/compiled'),
-    filename: `${outfile}.min.js`,
+    filename: `${output}.min.js`,
     library
   },
-  entry: './src/main.js',
+  entry: input,
   mode: 'production'
 }];

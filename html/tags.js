@@ -74,6 +74,8 @@ tags.script = (defer, src) => {
 tags.h1 = tag('h1');
 tags.h2 = tag('h2');
 
+tags.p = tag('p');
+tags.br = () => `<br/>`;
 tags.span = tag('span');
 
 tags.section = tag('section');

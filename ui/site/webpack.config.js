@@ -1,6 +1,6 @@
 let fConfig = require('@build/jsProject');
 
 module.exports = fConfig({
-  library: 'ChessIsArticle', 
-  output: 'article'
+  input: './src/site.js',
+  output: 'site'
 });

@@ -9,7 +9,8 @@ let base = {};
 base.layout = function layout(title, body, {
   chessmd,
   moreCss,
-  moreJs
+  moreJs,
+  buttons = []
 }) {
   let fonts = tags.link('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
 
@@ -33,7 +34,7 @@ base.layout = function layout(title, body, {
           
         ]
       },[
-        siteHeader(),
+        siteHeader(buttons),
         tags.div({
           id: "main-wrap",
           cls: [
@@ -45,13 +46,16 @@ base.layout = function layout(title, body, {
   ]);
 };
 
-function siteHeader() {
+function siteHeader(buttons) {
   return tags.header({ id: 'top' }, [
     tags.div({ cls: 'site-title-nav' }, [
       tags.h1({ cls: 'site-title' }, [
         tags.a({ href: "/" }, ['Chess Is Hard']
               )
       ])
+    ]),
+    tags.div({ cls: 'site-buttons' }, [
+      ...buttons
     ])
   ]);
 }
@@ -64,6 +68,7 @@ function loadScripts(moreJs, chessmd) {
   return tags.frag([
     chessmd ? helper.chessmdTag : '',
     cishardJsObject(),
+    helper.jsModule("site"),
     moreJs
   ]);
 }

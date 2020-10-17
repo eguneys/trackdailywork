@@ -22,6 +22,8 @@ function jsModule(name) {
 
 helper.cssTag = name => cssAt(`css/${name}.css`);
 
+helper.jsModule = jsModule;
+helper.editorTag = jsModule('editor');
 helper.articleTag = jsModule('article');
 helper.chessmdTag = jsAt('javascripts/vendor/bundle.js');
 
