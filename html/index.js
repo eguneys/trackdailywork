@@ -3,5 +3,6 @@ module.exports = {
   article: require('./article'),
   editor: require('./editor'),
   help: require('./help'),
+  title: require('./title'),
   review: require('./review')
 };

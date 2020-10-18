@@ -17,22 +17,28 @@ export default function(opts) {
 
     cishard.loadCssPath('help');
 
-    let $wrap = modal(`<form method="post"><div><input name="title" type='text' placeholder="Add a title"></input></div><div><input name="ligameid" type='text' placeholder="Lichess game link or id"></input></div><div class="form-actions single"><button class="button">Apply</button></div></form>`, 'edit-title', () => {
-      
-    });
+    fetch($title.href, {}).then(res => {
+      res.text().then(text => {
+        let $wrap = modal(text, 'edit-title', () => {
+        });
 
-    let $form = dom.findTag($wrap, 'form')[0];
+        let $form = dom.findTag($wrap, 'form')[0];
 
-    dom.fListen('submit', (_, e) => {
-      e.preventDefault();
+        dom.fListen('submit', (_, e) => {
+          e.preventDefault();
 
-      xhr.formToXhr(_).then(() => {
-        cishard.reload();
+          xhr.formToXhr(_).then(result => {
+            if (result.err) {
+              let $error = document.getElementById('form-error');
+              $error.textContent = result.err;
+            } else {
+              cishard.reload();
+            }
+          });
+
+        })($form);
       });
-
-    })($form);
-
-    
+    });    
   });
 
 }

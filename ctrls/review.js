@@ -1,47 +1,46 @@
+let { draftm } = require('../model');
+let { draftId } = require('../model/fixtures');
+let { review: sanitizeReview } = require('../sanitize');
 let html = require('../html');
 
 module.exports.get = function(req, res) {
+  function frender(review) {
+    res.send(html.review(review));
+  }
 
-  let review = {
-    title: 'Add a title',
-    date: 'September 2020',
-    gameid: 'tBBd0Uws',
-    time: '30+0',
-    rated: true,
-    white: 'heroku',
-    black: 'learningabc',
-    content: `
-
-# Classical Old Benoni
-
-<1. d4 c5 2. e3 d5 3. Nf3 Nf6> Engine suggestion is 2. d5
-
-# Avoid Isolated Pawn
-
-<4. c4 cxd4> Engine says it's ok
-
-# Preserve Initiative
-
-I exchange queens and develop
-
-=8
-
-Full game reference: 
-`
-  };  
-
-  res.send(html.review(review));
+  draftm.bySessionId(req.session.id).then(v_ =>
+    v_.fold(frender, _ =>
+      res.redirect('/editor')
+    )
+  );
 
 };
 
-module.exports.post = function(req, res) {
+module.exports.post = function(req, res, next) {
 
-  res.json({
-    url: '/review',
-    cookie: {
-      name: 'rk2',
-      maxAge: 604800,
-      value: 'anonuser'
-    }
-  });
+  function fUpdateAndRender(draft) {
+    sanitizeReview(req.body).fold(ureview =>
+      draftm.updateById(draft.id, ureview).then(v_ =>
+        v_.fold(_ =>
+          res.json({ 
+            url: '/review'
+          }),
+          next)
+      ), err => {
+        res.json({
+          err
+        });
+      });
+  }
+
+  draftm.bySessionId(req.session.id).then(v_ =>
+    v_.fold(fUpdateAndRender, () => {
+      draftm.insert({
+        id: draftId(),
+        sessionId: req.session.id
+      }).then(v_ =>
+        v_.fold(fUpdateAndRender, next)
+      );
+    })
+  );
 };

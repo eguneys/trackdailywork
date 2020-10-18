@@ -11,11 +11,12 @@ module.exports = (review) =>  {
       tags.a({ href: '#' }, [
         tags.h1([review.title])
       ]),
-      helper.ainfo(review),
+      review.gameid ? helper.ainfo(review) : '',
       tags.div({ id: 'chessmd' }),
-      tags.a({ href: helper.ligame(review.gameid) }, [
-        tags.img(helper.ligif(review.gameid))
-      ])
+      review.gameid ? 
+        tags.a({ href: helper.ligame(review.gameid) }, [
+          tags.img(helper.ligif(review.gameid))
+        ]) : ''
     ])
   ], {
     chessmd: true,
@@ -26,7 +27,7 @@ module.exports = (review) =>  {
         ])
       ]),
       tags.div([
-        tags.a({ id: 'title', cls: 'link' }, [
+        tags.a({ href:'/title/hook', id: 'title', cls: 'link' }, [
           'Edit Title'
         ])
       ]),

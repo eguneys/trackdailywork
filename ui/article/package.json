@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack --watch --env=development",
-    "dist": "webpack --env=production"
+    "prod": "webpack --env=production"
   },
   "devDependencies": {
     "webpack": "^5.1.3",

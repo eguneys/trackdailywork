@@ -82,6 +82,10 @@ tags.section = tag('section');
 
 tags.header = tag('header');
 
+tags.input = tag('input');
+tags.button = tag('button');
+tags.form = tag('form');
+
 tags.headTitle = title => {
   return tag('title')([title]);
 };

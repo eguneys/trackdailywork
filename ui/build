@@ -1,0 +1,37 @@
+#!/bin/bash -ea
+
+target=${1-dev}
+
+echo "building ui modules with target=$target"
+
+echo "node: $(node --version)"
+echo "yarn: $(yarn --version)"
+
+cd "$(git rev-parse --show-toplevel)"
+
+ls -l node_modules ui/node_modules ui/*/node_modules | grep /yarn/link/ || true
+
+mkdir -p public/compiled
+
+apps1="common"
+apps2="article editor review site"
+
+yarn install --non-interactive
+
+build() {
+  echo
+  echo "### ui/$@ ###"
+  set -ev
+
+  cd ui/$1
+  yarn run $target
+}
+
+if type -p parallel; then
+   set -x
+   parallel --gnu build ::: $apps1
+   parallel --gnu build ::: $apps2
+else
+  echo "For faster builds, install GNU parallel."
+  for app in $apps1 $apps2; do (build $app); done
+fi

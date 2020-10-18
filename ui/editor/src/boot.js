@@ -17,9 +17,14 @@ export default function(opts) {
 
     json($review.href, {
       method: 'post',
-      body: form({content: editor.content})
-    }).then(redirect => {
-      cishard.redirect(redirect);
+      body: form({content: editor.content() })
+    }).then(response => {
+      if (response.url) {
+        cishard.redirect(response);
+      } 
+      if (response.err) {
+        console.log(response.err);
+      }
     });
     
   });

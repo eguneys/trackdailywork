@@ -173,3 +173,8 @@ form .button:hover {
 .form-actions.single {
   justify-content: flex-end;
 }
+
+.form-errors {
+  font-size: 0.8em;
+  color: var(--color-error);
+}
