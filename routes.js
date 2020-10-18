@@ -9,14 +9,16 @@ let home = require('./ctrls/home'),
     article = require('./ctrls/article'),
     review = require('./ctrls/review'),
     help = require('./ctrls/help'),
-    title = require('./ctrls/title');
+    title = require('./ctrls/title'),
+    publish = require('./ctrls/publish');
 
 router.get('/', home);
 router.get('/editor', editor);
-router.get('/:article{8}', article);
+router.get('/:articleId([a-z|A-Z|0-9]{8})', article);
 router.get('/help/hook', help);
 router.get('/title/hook', title);
 router.get('/review', review.get);
 router.post('/review', upload.none(), review.post);
+router.get('/publish', publish);
 
 module.exports = router;

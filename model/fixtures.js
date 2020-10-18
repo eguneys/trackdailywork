@@ -4,5 +4,6 @@ let fixtures = {};
 
 fixtures.draftId = () => nextString(8);
 fixtures.sessionId = () => nextString(8);
+fixtures.articleId = () => nextString(8);
 
 module.exports = fixtures;

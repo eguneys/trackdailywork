@@ -18,5 +18,4 @@ app.use(session);
 let routes = require('./routes');
 app.use('/', routes);
 
-
 module.exports = { app, server };

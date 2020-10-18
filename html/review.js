@@ -2,22 +2,11 @@ let { layout } = require('./base');
 let tags = require('./tags');
 let helper = require('./helper');
 
+let { bits: articleBits } = require('./article');
+
 module.exports = (review) =>  {
-
-  let data = review.content;
-
   return layout('Review', [
-    tags.section([
-      tags.a({ href: '#' }, [
-        tags.h1([review.title])
-      ]),
-      review.gameid ? helper.ainfo(review) : '',
-      tags.div({ id: 'chessmd' }),
-      review.gameid ? 
-        tags.a({ href: helper.ligame(review.gameid) }, [
-          tags.img(helper.ligif(review.gameid))
-        ]) : ''
-    ])
+    articleBits.body(review)
   ], {
     chessmd: true,
     buttons: tags.frag([
@@ -41,7 +30,10 @@ module.exports = (review) =>  {
       helper.reviewTag,
       helper.embedJsUnsafeLoadThen(`
 ChessIsReview.boot(${helper.safeJsonValue({
-data
+data: {
+title: review.title,
+content: review.content
+}
 })})`)
     ]),
     moreCss: tags.frag([

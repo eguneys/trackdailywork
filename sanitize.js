@@ -20,6 +20,11 @@ function fligame(ligame) {
              validLiLink, `Invalid Lichess game or id`);
 }
 
+module.exports = {
+  fcontent,
+  ftitle
+};
+
 module.exports.review = (review) => {
 
   return group([

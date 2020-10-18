@@ -1,11 +1,13 @@
 let { extend } = require('./util');
 let game = require('./game');
+let publish = require('./publish');
 
 let tags = require('../tags');
 
 let helper = {};
 
 extend(helper, game);
+extend(helper, publish);
 
 let assetBaseUrl = '';
 
@@ -28,6 +30,7 @@ function jsModule(name) {
 helper.cssTag = name => cssAt(`css/${name}.css`);
 
 helper.jsModule = jsModule;
+helper.publishTag = jsModule('publish');
 helper.reviewTag = jsModule('review');
 helper.editorTag = jsModule('editor');
 helper.articleTag = jsModule('article');

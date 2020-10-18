@@ -4,7 +4,9 @@ import modal from 'common/modal';
 
 export default function(opts) {
   const $_ = document.getElementById("chessmd"),
-        { data } = opts;
+        { data } = opts,
+        { title } = data;
+  
   let review;
 
   opts.$_ = $_;
@@ -38,7 +40,10 @@ export default function(opts) {
 
         })($form);
       });
-    });    
+    });
   });
 
+  if (!title) {
+    $title.click();
+  }
 }

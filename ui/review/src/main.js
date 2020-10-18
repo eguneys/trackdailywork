@@ -5,7 +5,9 @@ export function app(opts) {
 
   let data = opts.data;
 
-  ChessMd(opts.$_, {content: data});
+  let { content, title } = data;
+
+  ChessMd(opts.$_, {content});
 
 }
 
