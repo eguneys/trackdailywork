@@ -11,7 +11,8 @@ module.exports = function(req, res, next) {
     v_.fold(frender, _ => {
       draftm.insert({
         id: draftId(),
-        sessionId: req.session.id
+        sessionId: req.session.id,
+        updatedAt: Date.now()
       }).then(v_ =>
         v_.fold(frender, next)
       );

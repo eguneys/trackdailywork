@@ -93,6 +93,10 @@ function Validation(invalid, valid) {
     }
     return this;
   };
+
+  this.getOrElse = (_) => {
+    return this.valid ? this.valid : _();
+  };
 }
 
 module.exports = validation;

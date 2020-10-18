@@ -20,6 +20,10 @@ p {
   font-size: 0.8em;
 }
 
+.info span {
+  text-transform: capitalize;
+}
+
 section {
   padding: 1em;
 }

@@ -1,9 +1,18 @@
 let tags = require('../tags');
 
-function ainfo({ rated, date, time, white, black }) {
+function ainfo({ rated, updatedAt, speed, white, black }) {
+
+  updatedAt = new Date(updatedAt);
+  let sDate = updatedAt
+      .toLocaleString('default', { month: 'long' }) + ' ' + updatedAt.getUTCFullYear();
+
   return tags.div({ cls: ['info'] }, [
-    tags.date([date]),
-    ` • ${time} • ${rated?'Rated':'Casual'} • `,
+    tags.date([sDate]),
+    ` • `,
+    tags.span(speed),
+    ` • `,
+    tags.span(rated?'Rated':'Casual'),
+    ` • `,
     tags.a({ href: liuser(white) }, [white]),
     ' vs ',
     tags.a({ href: liuser(black) }, [black]),

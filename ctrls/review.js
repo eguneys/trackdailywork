@@ -1,6 +1,7 @@
 let { draftm } = require('../model');
 let { draftId } = require('../model/fixtures');
 let { review: sanitizeReview } = require('../sanitize');
+let { lichess: populateLichess } = require('../populate');
 let html = require('../html');
 
 module.exports.get = function(req, res) {
@@ -20,17 +21,20 @@ module.exports.post = function(req, res, next) {
 
   function fUpdateAndRender(draft) {
     sanitizeReview(req.body).fold(ureview =>
-      draftm.updateById(draft.id, ureview).then(v_ =>
-        v_.fold(_ =>
-          res.json({ 
-            url: '/review'
-          }),
-          next)
-      ), err => {
-        res.json({
-          err
-        });
+      populateLichess(ureview).then(() => {
+        ureview.updatedAt = Date.now();
+        return draftm.updateById(draft.id, ureview).then(v_ =>
+          v_.fold(_ =>
+            res.json({ 
+              url: '/review'
+            }),
+            next)
+        );
+      }), err => {
+      res.json({
+        err
       });
+    });
   }
 
   draftm.bySessionId(req.session.id).then(v_ =>
