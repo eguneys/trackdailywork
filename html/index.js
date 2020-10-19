@@ -5,5 +5,6 @@ module.exports = {
   help: require('./help'),
   title: require('./title'),
   review: require('./review'),
-  publish: require('./publish')
+  publish: require('./publish'),
+  moderate: require('./moderate')
 };

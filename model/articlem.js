@@ -1,4 +1,5 @@
 let { toValid, valid, invalid } = require('../valid');
+let { Moderate, Accepted, Denied } = require('./fixtures');
 
 let articles = [];
 
@@ -24,14 +25,46 @@ function byId(id) {
   });
 }
 
-function list() {
+function accept(id) {
+  return updateStatus(id, Accepted);
+}
+
+function deny(id) {
+  return updateStatus(id, Denied);
+}
+
+function updateStatus(id, status) {
   return Promise.resolve().then(() => {
-    return valid(articles);
+    return toValid(articles
+                   .find(_ => _.id === id),
+                   `No article ${id}`)
+      .map(_ => {
+        _['status'] = status;
+        return _;
+      });
+  });
+}
+
+function moderate() {
+  return list(Moderate);
+}
+
+function accepted() {
+  return list(Accepted);
+}
+
+
+function list(status) {
+  return Promise.resolve().then(() => {
+    return valid(articles.filter(_ => _.status === status));
   });
 }
 
 module.exports = {
-  list,
+  moderate,
+  accepted,
+  accept,
+  deny,
   insert,
   byId,
 };

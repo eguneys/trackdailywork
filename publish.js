@@ -1,4 +1,4 @@
-let { articleId } = require('./model/fixtures');
+let { articleId, Moderate } = require('./model/fixtures');
 let { fcontent, ftitle } = require('./sanitize');
 
 module.exports.draftToArticle = draft =>
@@ -7,6 +7,7 @@ ftitle(draft.title).flatMap(_ =>
     ...draft,
     sessionId: undefined,
     id: articleId(),
+    status: Moderate
   }))
 );
 

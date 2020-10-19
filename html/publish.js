@@ -7,23 +7,24 @@ module.exports = (article) => {
 
   return layout(`${article.title}`, [
     tags.section([
-    tags.p(`Your article is published.`),
-    tags.div({ cls: 'publish-link' },[
-      tags.input({ type: 'text', value:helper.articleUrl(article) }),
-      tags.a({ target: "_blank", href: `/${article.id}` }, [
-        tags.span(`🔗`)
+      tags.p(`Your article is published.`),
+      tags.div({ cls: 'publish-link' },[
+        tags.input({ type: 'text', value:helper.articleUrl(article) }),
+        tags.a({ target: "_blank", href: `/${article.id}` }, [
+          tags.span(`🔗`)
+        ]),
       ]),
-    ]),
-    tags.div({ cls: 'publish-share' }, [
-      tags.p('Share: '),
-      helper.twitterEmbed(`#chess`, helper.articleUrl(article))
-    ])])], {
-      moreJs: tags.frag([
-        helper.publishTag,
-        helper.embedJsUnsafeLoadThen(`
+      tags.p({ cls: 'small' }, `It should be on the home page after review.`),
+      tags.div({ cls: 'publish-share' }, [
+        tags.p('Share: '),
+        helper.twitterEmbed(`#chess`, helper.articleUrl(article))
+      ])])], {
+        moreJs: tags.frag([
+          helper.publishTag,
+          helper.embedJsUnsafeLoadThen(`
 ChessIsPublish.boot(${helper.safeJsonValue({
 })})`),
-        helper.embedJsUnsafe(`
+          helper.embedJsUnsafe(`
 window.twttr = (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0],
     t = window.twttr || {};
@@ -41,6 +42,6 @@ window.twttr = (function(d, s, id) {
   return t;
 }(document, "script", "twitter-wjs"));
 `)]),
-      moreCss: helper.cssTag('publish')
-    });
+        moreCss: helper.cssTag('publish')
+      });
 };

@@ -10,15 +10,21 @@ let home = require('./ctrls/home'),
     review = require('./ctrls/review'),
     help = require('./ctrls/help'),
     title = require('./ctrls/title'),
-    publish = require('./ctrls/publish');
+    publish = require('./ctrls/publish'),
+    moderate = require('./ctrls/moderate');
 
 router.get('/', home);
 router.get('/editor', editor);
-router.get('/:articleId([a-z|A-Z|0-9]{8})', article);
 router.get('/help/hook', help);
 router.get('/title/hook', title);
 router.get('/review', review.get);
 router.post('/review', upload.none(), review.post);
 router.get('/publish', publish);
+router.get('/moderate', moderate.home);
+router.get('/moderate/:articleId([a-z|A-Z|0-9]{8})', moderate.one);
+router.post('/moderate/:articleId([a-z|A-Z|0-9]{8})/accept', moderate.accept);
+router.post('/moderate/:articleId([a-z|A-Z|0-9]{8})/deny', moderate.deny);
+
+router.get('/:articleId([a-z|A-Z|0-9]{8})', article);
 
 module.exports = router;

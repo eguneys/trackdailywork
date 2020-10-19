@@ -1,3 +1,4 @@
+let helper = require('./helper');
 let { layout } = require('./base');
 let tags = require('./tags');
 
@@ -14,5 +15,5 @@ module.exports = (articles) => layout('Free Chess Articles', [
 
 function article(article) {
   return tags.li([tags.a({ href: '/' + article.id }, [article.title]), 
-                  tags.date([article.date])]);
+                  tags.date([helper.date(article.updatedAt)])]);
 }

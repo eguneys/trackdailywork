@@ -30,3 +30,7 @@ section {
   color: transparent;
   background: transparent;
 }
+
+.small {
+  font-size: 0.8em;
+}

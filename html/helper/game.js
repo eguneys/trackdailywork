@@ -1,13 +1,10 @@
 let tags = require('../tags');
+let { date } = require('./date');
 
 function ainfo({ rated, updatedAt, speed, white, black }) {
 
-  updatedAt = new Date(updatedAt);
-  let sDate = updatedAt
-      .toLocaleString('default', { month: 'long' }) + ' ' + updatedAt.getUTCFullYear();
-
   return tags.div({ cls: ['info'] }, [
-    tags.date([sDate]),
+    tags.date([date(updatedAt)]),
     ` • `,
     tags.span(speed),
     ` • `,
