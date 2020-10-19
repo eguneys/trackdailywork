@@ -1,7 +1,8 @@
+let e = require('./env');
 let tags = require('../tags');
 
 function articleUrl(article) {
-  return `/${article.id}`;
+  return `${e.env.domain}/${article.id}`;
 }
 
 function twitterEmbed(text, url) {

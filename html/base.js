@@ -66,7 +66,7 @@ function cishardJsObject() {
 
 function loadScripts(moreJs, chessmd) {
   return tags.frag([
-    chessmd ? helper.chessmdTag : '',
+    chessmd ? helper.chessmdTag() : '',
     cishardJsObject(),
     helper.jsModule("site"),
     moreJs

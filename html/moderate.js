@@ -35,7 +35,7 @@ module.exports.article = (article) => {
       ])
     ]),
     moreJs: tags.frag([
-      helper.moderateTag,
+      helper.moderateTag(),
       helper.embedJsUnsafeLoadThen(`
 ChessIsModerate.boot(${helper.safeJsonValue({
 data

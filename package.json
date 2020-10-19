@@ -1,11 +1,13 @@
 {
   "name": "chessishard",
   "version": "1.0.0",
+  "private": true,
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www --ignore ui/ --ignore public/"
+    "dev": "nodemon ./bin/www --ignore ui/ --ignore public/",
+    "prod": "NODE_ENV=production node ./bin/www"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -15,5 +17,16 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.5"
-  }
+  },
+  "workspaces": [
+    "ui",
+    "ui/@build/jsProject",
+    "ui/common",
+    "ui/article",
+    "ui/moderate",
+    "ui/site",
+    "ui/review",
+    "ui/publish",
+    "ui/editor"
+  ]
 }

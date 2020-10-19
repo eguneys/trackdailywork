@@ -23,7 +23,7 @@ module.exports = (draft) => {
       ])
     ]),
     moreJs: tags.frag([
-      helper.editorTag,
+      helper.editorTag(),
       helper.embedJsUnsafeLoadThen(`
 ChessIsEditor.boot(${helper.safeJsonValue({
 data

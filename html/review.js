@@ -27,7 +27,7 @@ module.exports = (review) =>  {
       ])
     ]),
     moreJs: tags.frag([
-      helper.reviewTag,
+      helper.reviewTag(),
       helper.embedJsUnsafeLoadThen(`
 ChessIsReview.boot(${helper.safeJsonValue({
 data: {

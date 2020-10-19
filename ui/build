@@ -1,6 +1,7 @@
 #!/bin/bash -ea
 
-target=${1-dev}
+target=${1-prod}
+mode=${2-build} #build | css
 
 echo "building ui modules with target=$target"
 
@@ -23,15 +24,24 @@ build() {
   echo "### ui/$@ ###"
   set -ev
 
-  cd ui/$1
-  yarn run $target
+  if [[ $1 == "css" ]]; then
+      cd ui
+      yarn run gulp $target
+  else
+      cd ui/$1
+      yarn run $target
+  fi
 }
 
-if type -p parallel; then
-   set -x
-   parallel --gnu build ::: $apps1
-   parallel --gnu build ::: $apps2
+if [ $mode == "css" ]; then
+    (build css)
 else
-  echo "For faster builds, install GNU parallel."
-  for app in $apps1 $apps2; do (build $app); done
+    if type -p parallel; then
+        set -x
+        parallel --gnu build ::: $apps1
+        parallel --gnu build ::: $apps2
+    else
+        echo "For faster builds, install GNU parallel."
+        for app in $apps1 $apps2; do (build $app); done
+    fi
 fi

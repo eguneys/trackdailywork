@@ -33,7 +33,7 @@ module.exports = (article) => {
   ], {
     chessmd: true,
     moreJs: tags.frag([
-      helper.articleTag,
+      helper.articleTag(),
       helper.embedJsUnsafeLoadThen(`
 ChessIsArticle.boot(${helper.safeJsonValue({
 data

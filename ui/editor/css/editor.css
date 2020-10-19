@@ -1,0 +1,27 @@
+#chessed {
+  position: relative;
+  height: calc(100vh - var(--site-header-height));
+}
+
+#chessed ch-editor textarea {
+  font-size: 1em;
+}
+
+[data-fen],
+[data-ply],
+.hover-ply {
+  width: 60vmin;
+  height: 0;
+  padding-bottom: 60vmin;
+}
+
+img {
+  width: 60vmin;
+  margin-left: 1em;
+}
+
+[data-fen],
+[data-ply] {
+  position: relative;
+  margin-left: 1em;
+}

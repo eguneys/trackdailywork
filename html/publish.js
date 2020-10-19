@@ -20,7 +20,7 @@ module.exports = (article) => {
         helper.twitterEmbed(`#chess`, helper.articleUrl(article))
       ])])], {
         moreJs: tags.frag([
-          helper.publishTag,
+          helper.publishTag(),
           helper.embedJsUnsafeLoadThen(`
 ChessIsPublish.boot(${helper.safeJsonValue({
 })})`),
