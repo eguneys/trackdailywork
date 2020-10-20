@@ -1,3 +1,7 @@
+let e = require('./helper/env');
+let trans = require('./trans');
+let openGraph = require('./opengraph');
+
 let { layout } = require('./base');
 let tags = require('./tags');
 let helper = require('./helper');
@@ -31,6 +35,12 @@ module.exports = (article) => {
   return layout(article.title, [
     bits.body(article)
   ], {
+    openGraph: openGraph({
+      title: article.title,
+      description: trans.siteDescription,
+      url: e.env.domain,
+      image: helper.assetUrl("images/Chessishard.png")
+    }),
     chessmd: true,
     moreJs: tags.frag([
       helper.articleTag(),

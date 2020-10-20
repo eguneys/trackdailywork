@@ -113,3 +113,9 @@ export function parse(str) {
   let doc = parser.parseFromString(str, 'text/html');
   return doc.body;
 }
+
+export function bodyData(data) {
+  let $_ = findTag(document, 'body')[0];
+
+  return $_.dataset[data];
+};

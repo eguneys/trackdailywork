@@ -29,7 +29,7 @@ function tag(tag) {
 
       if (_attrs) {
         attrs = Object.keys(_attrs).map(_ => {
-          return `${_}=${_attrs[_]} `;
+          return `${_}="${_attrs[_]}" `;
         }).join(' ');
       }
 
@@ -85,6 +85,8 @@ tags.header = tag('header');
 tags.input = tag('input');
 tags.button = tag('button');
 tags.form = tag('form');
+
+tags.meta = tag('meta');
 
 tags.headTitle = title => {
   return tag('title')([title]);

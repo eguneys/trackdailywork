@@ -1,13 +1,9 @@
 module.exports = function(app) {
 
-  this.setServer = (server) => {
-    let { address, port } = server.address();
+  this.setServer = (server) => {};  
 
-    this.domain = address;
-    this.port = port;
+  this.domain = 'https://chessishard.com';
 
-    this.isProd = app.get('env') === 'production';
-    this.minifiedAssets = this.isProd;
-  };  
-  
+  this.isProd = app.get('env') === 'production';
+  this.minifiedAssets = this.isProd;
 };

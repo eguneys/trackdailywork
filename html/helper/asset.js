@@ -19,7 +19,9 @@ function jsModule(name) {
   return jsAt(`compiled/${name}${e.env.minifiedAssets ? '.min':''}.js`);
 }
 
-let helper = {};
+let helper = {
+  assetUrl
+};
 
 helper.cssTag = name => 
 cssAt(`css/${name}.${e.env.minifiedAssets?'min':'dev'}.css`);

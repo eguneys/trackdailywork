@@ -9,6 +9,7 @@ exports.findKlass = findKlass;
 exports.findTag = findTag;
 exports.findId = findId;
 exports.parse = parse;
+exports.bodyData = bodyData;
 exports.fShow = exports.fHide = exports.fListen = exports.fAttribute = exports.fAddClass = exports.fTranslateAbs = exports.updateChildren = exports.textNode = exports.span = exports.div = void 0;
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
@@ -156,3 +157,10 @@ function parse(str) {
   var doc = parser.parseFromString(str, 'text/html');
   return doc.body;
 }
+
+function bodyData(data) {
+  var $_ = findTag(document, 'body')[0];
+  return $_.dataset[data];
+}
+
+;

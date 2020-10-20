@@ -1,3 +1,5 @@
+import * as dom from 'common/dom';
+
 export const assetUrl = (path) => {
   const baseUrl = '';
 
@@ -17,4 +19,4 @@ export const loadCss = url => {
 };
 
 export const loadCssPath = (key) =>
-loadCss(`css/${key}.css`);
+loadCss(`css/${key}.${dom.bodyData('dev')?'dev':'min'}.css`);

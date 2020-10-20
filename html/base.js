@@ -1,8 +1,13 @@
+let e = require('./helper/env');
 let tags = require('./tags');
 let helper = require('./helper');
+let trans = require('./trans');
 
 let doctype = tags.raw('<!DOCTYPE html>');
 let htmlTag = tags.html();
+let topComment = tags.raw('<!-- Chessishard is open source! See https://github.com/eguneys/chessishard -->');
+let viewport = tags.raw('<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">');
+
 
 let base = {};
 
@@ -10,29 +15,36 @@ base.layout = function layout(title, body, {
   chessmd,
   moreCss,
   moreJs,
+  openGraph,
   buttons = []
 }) {
-  let fonts = tags.link('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+  // let fonts = tags.link('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
 
-  let favicon = tags.raw(`
-<link rel="icon" href="data:;base64,iVBORwOKGO=" />
-`);
+  let favicons = [512, 128, 64, 32]
+      .map(px => tags.raw(`
+<link rel="icon" type="image/png" href="${helper.assetUrl(`images/cis${px}x${px}.png`)}" sizes="${px}x${px}"/>
+`)
+          ).join('');
 
   return tags.frag([
     doctype,
-    htmlTag([
+    htmlTag({ lang: 'en' }, [
+      topComment,
       tags.head([
         tags.headTitle(`${title} • chessishard.com`),
+        helper.cssTag('fonts'),
         helper.cssTag('site'),
-        fonts,
+        //fonts,
         moreCss,
         chessmd ? helper.cssTag('main') : '',
-        favicon
+        tags.meta({ content: openGraph?openGraph.description:trans.siteDescription,
+                    name: 'description' }),
+        favicons,
+        openGraph?openGraph.frags:''
       ]),
       tags.body({
-        cls: [
-          
-        ]
+        cls: [],
+        'data-dev': e.env.minifiedAssets?"false": "true",
       },[
         siteHeader(buttons),
         tags.div({

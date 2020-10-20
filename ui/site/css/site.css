@@ -5,7 +5,7 @@
   --color-primary: #2ec4b6;
   --color-primary-variant: #161512;
 
-  --site-header-height: 40px;
+  --site-header-height: 50px;
 }
 
 body {
@@ -13,6 +13,8 @@ body {
   color: var(--color-font);
   margin: 0;
   padding: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
   font-size: calc(16px + 2 * ((100vw - 320px) / 880));
   font-family: 'Open Sans', sans-serif;
 }
@@ -93,7 +95,7 @@ h1 {
 
 header {
   font-family: 'Open Sans', sans-serif;
-  font-size: 0.8em;
+  font-size: 1em;
   background: #fa3435;
 }
 
@@ -111,7 +113,7 @@ header a:hover {
 }
 
 .button {
-  font-size: 1.1em;
+  font-size: 1.2em;
   padding: .5em;
   margin: .2em 0;
   text-align: center;
