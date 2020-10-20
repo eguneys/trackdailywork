@@ -34,3 +34,8 @@ section {
 .small {
   font-size: 0.8em;
 }
+
+.warning {
+  color: #f0ec22;
+  margin-right: 0.5em;
+}

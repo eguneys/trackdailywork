@@ -15,6 +15,8 @@ module.exports = (article) => {
         ]),
       ]),
       tags.p({ cls: 'small' }, `It should be on the home page after review.`),
+      tags.p({ cls: 'small' }, [tags.span({cls: 'warning'}, `Warning:`), 
+                                ` The links are likely to change in beta.`]),
       tags.div({ cls: 'publish-share' }, [
         tags.p('Share: '),
         helper.twitterEmbed(`#chess`, helper.articleUrl(article))
