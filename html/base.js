@@ -31,6 +31,7 @@ base.layout = function layout(title, body, {
     htmlTag({ lang: 'en' }, [
       topComment,
       tags.head([
+        viewport,
         tags.headTitle(`${title} • chessishard.com`),
         helper.cssTag('fonts'),
         helper.cssTag('site'),
