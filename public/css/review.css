@@ -1,9 +1,0 @@
-a.link#publish {
-  background: #8ef4a6;
-  /* background: #8ef4a6; */
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
-}
-
-a.link#publish:hover {
-  background: #cefda6;
-}
