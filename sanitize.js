@@ -10,7 +10,7 @@ function fcontent(content) {
 function ftitle(title) {
   return valid(title)
     .check(_ => _.length < 20, `Minimum length: 20`)
-    .check(_ => _.length > 200, `Maximum length: 200`);
+    .check(_ => _.length > 60, `Maximum length: 60`);
 
 }
 
