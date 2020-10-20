@@ -1,10 +1,10 @@
 let e = require('./env');
 let tags = require('../tags');
 
-let assetBaseUrl = '';
+let assetBaseUrl = () => e.env.assetBaseUrl;
 
 function assetUrl(path) {
-  return `${assetBaseUrl}/assets/${path}`;
+  return `${assetBaseUrl()}/assets/${path}`;
 }
 
 function cssAt(path) {

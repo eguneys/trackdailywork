@@ -6,4 +6,6 @@ module.exports = function(app) {
 
   this.isProd = app.get('env') === 'production';
   this.minifiedAssets = this.isProd;
+
+  this.assetBaseUrl = this.isProd ? this.domain : '';
 };
