@@ -12,6 +12,6 @@
     "webpack-cli": "^4.0.0"
   },
   "dependencies": {
-    "chessmd": "1.1.1"
+    "chessmd": "^1.3.0"
   }
 }

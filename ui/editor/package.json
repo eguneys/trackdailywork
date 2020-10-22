@@ -12,6 +12,6 @@
     "webpack-cli": "^4.0.0"
   },
   "dependencies": {
-    "ciseditor": "1.2.1"
+    "ciseditor": "^1.3.1"
   }
 }

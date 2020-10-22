@@ -7,6 +7,8 @@ export function app(opts) {
 
   let { content, title } = data;
 
+  console.log(`[ChessMd@${ChessMd.version}]`);
+
   ChessMd(opts.$_, {content});
 
 }
