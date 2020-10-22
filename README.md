@@ -1,5 +1,10 @@
 # chessishard
 
+### TODO
+
+- [ ] Single page for /editor /review
+- [ ] Edit article with single page
+
 ### Single Draft for an Anonymous Session
 
 I want to build an app where user can publish an article. User is anonymous so there is no login or authorization. I set a cookie on the user to identify a session. A session has a draft. 
