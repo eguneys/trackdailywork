@@ -12,7 +12,7 @@ module.exports.home = function(req, res, next) {
 module.exports.one = function(req, res, next) {
   let { articleId } = req.params;
   
-  articlem.byId(articleId).then(v_ => v_.fold(article =>
+  articlem.get(articleId).then(v_ => v_.fold(article =>
     res.send(html.moderate.article(article)),
     _ => res.status(404).send(html.article.notFound)
   ));

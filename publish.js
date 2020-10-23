@@ -5,15 +5,15 @@ module.exports.draftToArticle = draft =>
 ftitle(draft.title).flatMap(_ =>
   fcontent(draft.content).map(_ => ({
     ...draft,
-    sessionId: undefined,
+    sessionId: null,
     id: articleId(),
     status: Moderate
   }))
 );
 
 module.exports.emptyDraft = draft => ({
-  content: undefined,
-  title: undefined,
-  ligameid: undefined,
-  gameid: undefined
+  content: null,
+  title: null,
+  ligameid: null,
+  gameid: null
 });

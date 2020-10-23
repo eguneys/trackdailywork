@@ -9,7 +9,7 @@ module.exports.get = function(req, res) {
     res.send(html.review(review));
   }
 
-  draftm.bySessionId(req.session.id).then(v_ =>
+  draftm.getBySessionId(req.session.id).then(v_ =>
     v_.fold(frender, _ =>
       res.redirect('/editor')
     )
@@ -20,10 +20,10 @@ module.exports.get = function(req, res) {
 module.exports.post = function(req, res, next) {
 
   function fUpdateAndRender(draft) {
-    sanitizeReview(req.body).fold(ureview =>
-      populateLichess(ureview).then(() => {
-        ureview.updatedAt = Date.now();
-        return draftm.updateById(draft.id, ureview).then(v_ =>
+    sanitizeReview(req.body).fold(uReview =>
+      populateLichess(uReview).then(() => {
+        uReview.updatedAt = Date.now();
+        return draftm.update(draft.id, uReview).then(v_ =>
           v_.fold(_ =>
             res.json({ 
               url: '/review'
@@ -37,13 +37,15 @@ module.exports.post = function(req, res, next) {
     });
   }
 
-  draftm.bySessionId(req.session.id).then(v_ =>
+  draftm.getBySessionId(req.session.id).then(v_ =>
     v_.fold(fUpdateAndRender, () => {
-      draftm.insert({
+      let draft = {
         id: draftId(),
-        sessionId: req.session.id
-      }).then(v_ =>
-        v_.fold(fUpdateAndRender, next)
+        sessionId: req.session.id,
+        updatedAt: Date.now()
+      };
+      draftm.insert(draft).then(v_ =>
+        v_.fold(_ => fUpdateAndRender(draft), next)
       );
     })
   );

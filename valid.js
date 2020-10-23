@@ -1,5 +1,10 @@
 let validation = {};
 
+validation.fToValid = function(_invalid) {
+  return value => validation
+    .toValid(value, _invalid);
+};
+
 validation.toValid = function (value, _invalid) {
   return value ? validation.valid(value) :
     validation.invalid(_invalid);

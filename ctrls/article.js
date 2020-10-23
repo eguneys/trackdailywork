@@ -5,7 +5,7 @@ module.exports = function(req, res) {
 
   let { articleId } = req.params;
 
-  articlem.byId(articleId).then(v_ => v_.fold(article =>
+  articlem.get(articleId).then(v_ => v_.fold(article =>
     res.send(html.article(article)),
     _ => res.status(404).send(html.article.notFound)
   ));

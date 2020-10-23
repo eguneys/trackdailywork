@@ -7,14 +7,15 @@ module.exports = function(req, res, next) {
     res.send(html.editor(draft.content));
   }
 
-  draftm.bySessionId(req.session.id).then(v_ => {
+  draftm.getBySessionId(req.session.id).then(v_ => {
     v_.fold(frender, _ => {
-      draftm.insert({
+      let draft = {
         id: draftId(),
         sessionId: req.session.id,
         updatedAt: Date.now()
-      }).then(v_ =>
-        v_.fold(frender, next)
+      };
+      draftm.insert(draft).then(v_ =>
+        v_.fold(_ => frender(draft), next)
       );
     });
   });

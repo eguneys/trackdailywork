@@ -7,7 +7,7 @@ module.exports = (req, res) => {
     res.send(html.title(review.title, review.ligameid));
   }
 
-  draftm.bySessionId(req.session.id).then(v_ =>
+  draftm.getBySessionId(req.session.id).then(v_ =>
     v_.fold(frender, _ =>
       res.redirect('/editor')
     )

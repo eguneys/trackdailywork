@@ -1,43 +1,29 @@
-let { toValid, valid, invalid } = require('../valid');
+let { valid, invalid, fToValid } = require('../valid');
 
-let sessions = [];
+module.exports = (coll) => {
+  return new SessionM(coll);
+};
 
-function insert(session) {
-  return Promise.resolve().then(() => {
-    if (!session.id) {
-      return invalid("Session requires an id");
-    }
+function SessionM(coll) {
 
-    return byId(session.id).then(v_ => v_.flatMap(_ => {
-      return invalid(`Session already exists ${session.id}`);
-    }, () => {
-      sessions.push(session);
-      return valid(session);
-    }));
-  });
-}
+  this.insert = (session) =>
+  coll.insert(session)
+    .then(valid)
+    .catch(err => {
+      // monitor duplication
+      return invalid(err);
+    });
 
-function byId(id) {
-  return Promise.resolve().then(() => {
-    return toValid(
-      sessions.find(_ => _.id === id),
-      `No session ${id}`);
-  });
-}
+  this.get = (name) =>
+  coll.one(name)
+    .then(fToValid(`No session ${name}`))
+    .catch(invalid);
 
-function updateById(id, update) {
-  return byId(id).then(v_ => v_.map(_ => {
-    for (let key in update) {
-      _[key] = update[key];
-    }
+  this.update = (name, f) =>
+  coll.update(name, f)
+    .then(valid)
+    .catch(invalid);
 
-    return _;
-  }));
-
-}
-
-module.exports = {
-  insert,
-  byId,
-  updateById
+  this.drop = () =>
+  coll.drop();
 };

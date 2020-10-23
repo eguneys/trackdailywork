@@ -1,9 +1,27 @@
 # chessishard
 
+[Firestore docs](https://googleapis.dev/nodejs/firestore/latest/DocumentSnapshot.html)
+
 ### TODO
 
+- [ ] Asset versionx
+- [ ] CDN for [static files](https://cloud.google.com/appengine/docs/standard/nodejs/serving-static-files)
+- [ ] Delay game gif load
 - [ ] Single page for /editor /review
-- [ ] Edit article with single page
+- [ ] Edit article on single page
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Single Draft for an Anonymous Session
 

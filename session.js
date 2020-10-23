@@ -4,7 +4,7 @@ let { sessionId } = require('./model/fixtures');
 
 module.exports = function(req, res, next) {
 
-  function makeNewSession() {
+  function makeNewSession(_) {
     let session = {
       id: sessionId()
     };
@@ -12,7 +12,7 @@ module.exports = function(req, res, next) {
     sessionm.insert(session)
       .then(v_ => {
         v_.fold(_ => {
-          res.cookie(_cookie.name, _.id, { maxAge: _cookie.maxAge });
+          res.cookie(_cookie.name, session.id, { maxAge: _cookie.maxAge });
           req.session = session;
           next();
         }, invalid => {
@@ -23,7 +23,7 @@ module.exports = function(req, res, next) {
 
   let vcookie = toValid(req.cookies[_cookie.name], 'No session cookie');
   vcookie.fold(cookie => {
-    sessionm.byId(cookie).then(vsession => {
+    sessionm.get(cookie).then(vsession => {
       vsession.fold(session => {
         req.session = session;
         next();

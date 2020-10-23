@@ -9,11 +9,11 @@ module.exports = function(req, res, next) {
         res.send(html.publish(_)),
         next)
       ).then(() => {
-        draftm.updateById(draft.id, emptyDraft(draft));
+        draftm.update(draft.id, emptyDraft(draft));
       });
   }
 
-  draftm.bySessionId(req.session.id).then(v_ =>
+  draftm.getBySessionId(req.session.id).then(v_ =>
     v_.fold(draft =>     
       draftToArticle(draft).fold(
         _ => fPublish(draft, _), 
