@@ -8,8 +8,10 @@
     "test": "node ./test/index.js",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www --ignore ui/ --ignore public/",
-    "assets": "./ui/build prod",
-    "prod": "NODE_ENV=production node ./bin/www"
+    "assets": "./ui/build prod && ./ui/build prod css",
+    "prod": "NODE_ENV=production node ./bin/www",
+    "preview": "yarn assets && yarn prod",
+    "gcp-build": "yarn assets"
   },
   "dependencies": {
     "@google-cloud/firestore": "^4.4.0",
