@@ -1,0 +1,16 @@
+.box__top .search {
+  display: flex;
+  flex: 3 1 auto;
+}
+
+.box__top .search input {
+  flex: 1 1 100%;
+  height: 3.2rem;
+}
+
+
+.box__top .new-opening {
+  height: 3.2rem;
+  margin-left: 1rem;
+  whitespace: nowrap;
+}

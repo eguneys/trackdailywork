@@ -27,6 +27,7 @@ helper.cssTag = name =>
 cssAt(`css/${name}.${e.env.minifiedAssets?'min':'dev'}.css`);
 
 helper.jsModule = jsModule;
+helper.openingTag = () => jsModule('opening');
 helper.moderateTag = () => jsModule('moderate');
 helper.publishTag = () => jsModule('publish');
 helper.reviewTag = () => jsModule('review');

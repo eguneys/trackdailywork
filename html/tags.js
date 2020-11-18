@@ -56,6 +56,8 @@ tags.li = tag('li');
 tags.a = tag('a');
 tags.date = tag('date');
 
+tags.nav = tag('nav');
+
 tags.link = (href, rel='stylesheet') => {
   return `<link href=${href} rel=${rel}>`;
 };

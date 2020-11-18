@@ -68,6 +68,22 @@ h1 {
 
 .site-title {
   white-space: nowrap;
+  margin: 0 1em 0 0;
+}
+
+.site-title-nav {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#topnav section {
+  height: var(--site-header-height);
+}
+
+#topnav section > a {
+  display: block;
+  height: var(--site-header-height);
+  line-height: var(--site-header-height);
 }
 
 .site-buttons {
@@ -184,4 +200,21 @@ form .button:hover {
 .form-errors {
   font-size: 0.8em;
   color: var(--color-error);
+}
+
+input, textarea, select {
+  background: #24221e;
+  border: 1px solid #404040;
+  padding: .6em 1em;
+}
+
+
+/** BOX TOP **/
+
+.box__top {
+  padding: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
 }

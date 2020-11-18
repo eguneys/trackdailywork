@@ -1,4 +1,5 @@
 let cleanCss = require('gulp-clean-css');
+let watch = require('gulp-watch');
 let rename = require('gulp-rename');
 let gulp = require('gulp');
 let { src, dest } = require('gulp');
@@ -9,6 +10,7 @@ const outputDir = '../public/css';
 function dev(cb) {
 
   gulp.src(sourcesGlob)
+    .pipe(watch(sourcesGlob))
     .pipe(rename({dirname: '', extname: '.dev.css' }))
     .pipe(dest(outputDir));
 

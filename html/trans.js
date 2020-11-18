@@ -1,5 +1,5 @@
 let trans = {};
 
-trans.siteDescription = `Free chess articles. Easy to read, embed inline notation, and chess boards. Read and publish free chess articles. Improve your chess, analyze your own games.`;
+trans.siteDescription = `Improve your chess. Write your analysis. Share free chess articles. Embed inline notation, embed visual board. Read and publish free chess articles. Analyze your own games.`;
 
 module.exports = trans;

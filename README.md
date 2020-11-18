@@ -4,11 +4,13 @@
 
 ### TODO
 
+- [ ] Single page for /editor /review
+- [ ] Edit article on single page
+- [ ] View count
+- [ ] Loading indicator
 - [ ] Asset versionx
 - [ ] CDN for [static files](https://cloud.google.com/appengine/docs/standard/nodejs/serving-static-files)
 - [ ] Delay game gif load
-- [ ] Single page for /editor /review
-- [ ] Edit article on single page
 
 
 

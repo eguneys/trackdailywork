@@ -14,6 +14,9 @@ let home = require('./ctrls/home'),
     moderate = require('./ctrls/moderate'),
     dump = require('./ctrls/dump');
 
+
+let opening = require('./ctrls/opening');
+
 router.get('/', home);
 router.get('/editor', editor);
 router.get('/help/hook', help);
@@ -27,6 +30,9 @@ router.post('/moderate/:articleId([a-z|A-Z|0-9]{8})/accept', moderate.accept);
 router.post('/moderate/:articleId([a-z|A-Z|0-9]{8})/deny', moderate.deny);
 
 router.get('/dump', dump);
+
+router.get('/opening', opening);
+router.post('/opening', opening.post);
 
 router.get('/:articleId([a-z|A-Z|0-9]{8})', article);
 
