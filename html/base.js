@@ -66,11 +66,11 @@ function siteHeader(buttons) {
         tags.a({ href: "/" }, ['📘 Chess Is Hard']
               )
       ]),
-      tags.nav({ id: 'topnav' }, [
-        tags.section([
-          tags.a({ href: '/opening' }, 'Opening')
-        ])
-      ])
+      // tags.nav({ id: 'topnav' }, [
+      //   tags.section([
+      //     tags.a({ href: '/opening' }, 'Opening')
+      //   ])
+      // ])
     ]),
     tags.div({ cls: 'site-buttons' }, [
       ...buttons

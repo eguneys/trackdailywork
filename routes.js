@@ -31,9 +31,6 @@ router.post('/moderate/:articleId([a-z|A-Z|0-9]{8})/deny', moderate.deny);
 
 router.get('/dump', dump);
 
-router.get('/opening', opening);
-router.post('/opening', opening.post);
-
 router.get('/:articleId([a-z|A-Z|0-9]{8})', article);
 
 module.exports = router;
