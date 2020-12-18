@@ -1,4 +1,4 @@
-let { valid, invalid, fToValid } = require('../valid');
+let { sessionId } = require('./fixtures');
 
 module.exports = (coll) => {
   return new SessionM(coll);
@@ -6,23 +6,19 @@ module.exports = (coll) => {
 
 function SessionM(coll) {
 
-  this.insert = (session) =>
-  coll.insert(session)
-    .then(valid)
-    .catch(err => {
-      // monitor duplication
-      return invalid(err);
-    });
+  let newSession = (userid) => ({
+    id: sessionId(),
+    userid
+  });
 
-  this.get = (name) =>
-  coll.one(name)
-    .then(fToValid(`No session ${name}`))
-    .catch(invalid);
+  this.insert = (userid) =>
+  coll.insert(newSession(userid));
+
+  this.byId = (name) =>
+  coll.one(name);
 
   this.update = (name, f) =>
-  coll.update(name, f)
-    .then(valid)
-    .catch(invalid);
+  coll.update(name, f);
 
   this.drop = () =>
   coll.drop();

@@ -1,13 +1,21 @@
 let store = require('./firestore');
 
 const isProd = process.env.NODE_ENV === 'production';
-const session = 'Session' + (isProd ? '' : 'dev');
-const draft = 'Draft' + (isProd ? '': 'dev');
-const article = 'Article' + (isProd ? '' : 'dev');
+const mName = name => isProd ? name : `${name}-dev`;
+
+const session = mName('session');
+const draft = mName('draft');
+const article = mName('article');
+const liuser = mName('liuser');
+const book = mName('book');
+
+const mInit = (m, coll) => m(store(coll));
 
 module.exports = {
-  sessionm: require('./sessionm')(store(session)),
-  draftm: require('./draftm')(store(draft)),
-  articlem: require('./articlem')(store(article)),
+  sessionm: mInit(require('./sessionm'), session),
+  draftm: mInit(require('./draftm'), draft),
+  articlem: mInit(require('./articlem'), article),
+  userm: mInit(require('./liuserm'), liuser),
+  bookm: mInit(require('./bookm'), book),
   terminate: store.terminate
 };
