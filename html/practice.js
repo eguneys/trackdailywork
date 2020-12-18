@@ -7,25 +7,37 @@ let tags = require('./tags');
 
 let bits = {};
 
-bits.chapter = (sections, exercises) => {
-  return (chapter) => {
-    let csections = sections.filter(_ => _.chapterId === chapter.id);
+bits.chapter = (sectionsWithMeta, exercisesWithMeta) => {
+  return (chapterWithMeta) => {
+
+    let { chapter, meta } = chapterWithMeta;
+
+    let csections = sectionsWithMeta.filter(_ => _.section.chapterId === chapter.id);
 
     return tags.li([
-      tags.h2(`${chapter.chapter}. ${chapter.name}`),
+      tags.div({ cls: 'chead' }, [
+        tags.h2(`${chapter.chapter}. ${chapter.name}`),
+        tags.span({}, [`${meta.done}/${meta.total}`])
+      ]),
       tags.ul(
-        csections.map(bits.section(exercises))
+        csections.map(bits.section(exercisesWithMeta))
       )
     ]);
   };
 };
 
-bits.section = exercises => {
-  return (section) => {
-    let cexercises = exercises.filter(_ => _.sectionId === section.id);
+bits.section = exercisesWithMeta => {
+  return (sectionWithMeta) => {
+
+    let { section, meta } = sectionWithMeta;
+
+    let cexercises = exercisesWithMeta.filter(_ => _.exercise.sectionId === section.id);
 
     return tags.li([
-      tags.h3(`${section.name}`),
+      tags.div({ cls: 'shead' }, [
+        tags.h3(`${section.name}`),
+        tags.span({}, [`${meta.done}/${meta.total}`]),
+      ]),
       tags.ul(
         cexercises.map(bits.exercise)
       )
@@ -33,10 +45,25 @@ bits.section = exercises => {
   };
 };
 
-bits.exercise = (exercise) => {
-  return tags.li([
-    tags.a({ target: '_blank', href: `/challenge/${exercise.id}` }, [exercise.fen])
+bits.exercise = (exerciseWithMeta) => {
+  let { exercise, meta } = exerciseWithMeta;
+
+  let markKlass = meta.done ? 'done' : '';
+
+  return tags.li({ cls: 'exercise' }, [
+    tags.a({ target: '_blank', href: `/challenge/${exercise.id}` }, [exercise.fen]),
+    tags.span({ cls: 'mark ' + markKlass }, '✓')
   ]);
+};
+
+bits.progress = (ctx, progress) => {
+  if (!ctx.user) {
+    return tags.p([`To auto-challenge Stockfish and save your progress `,
+                   tags.a({ href: '/auth' }, [`Login with Lichess`])
+                  ]);
+  } else {
+    return tags.p({ class: 'progress' }, [`${progress.done}/${progress.total}`]);
+  }
 };
 
 bits.info = (ctx) => {
@@ -44,9 +71,6 @@ bits.info = (ctx) => {
   if (!ctx.user) {
     return tags.div([
       tags.p(`Select a position to open the analysis board on Lichess.`),
-      tags.p([`To auto-challenge Stockfish and save your progress `,
-              tags.a({ href: '/auth' }, [`Login with Lichess`])
-             ]),
     ]);
   }
 
@@ -57,20 +81,22 @@ bits.info = (ctx) => {
     tags.p('You have to win or make a draw with current color to succeed.'),
     tags.p(`If you can't succeed on the first try, you can rematch the AI and try again.`),
     tags.p(`You might have to abort the opposite color and rematch again to try with the required color.`),
-    tags.p(`After you succeed your progress will be saved on this page.`)
+    tags.p(`After you succeed your progress will be saved on this page. (Unfortunately you have to reload this page to see changes.) `)
   ]);
 
 };
 
-module.exports = (chapters, sections, exercises) => ctx => 
+module.exports = (chaptersWithMeta, sectionsWithMeta, exercisesWithMeta, progress) => ctx => 
 layout('Free Chess Articles', [
   bits.info(ctx),
+  bits.progress(ctx, progress),
   tags.div({ cls: ['home'] }, [
     tags.div([
-      tags.ul(chapters.map(bits.chapter(sections, exercises)))
+      tags.ul(chaptersWithMeta.map(bits.chapter(sectionsWithMeta, exercisesWithMeta)))
     ])
   ])  
 ], {
+  moreCss: helper.cssTag('practice'),
   openGraph: openGraph({
     title: "Free chess articles",
     description: trans.siteDescription,

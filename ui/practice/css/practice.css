@@ -1,0 +1,48 @@
+
+.exercise {
+}
+
+.exercise .mark {
+  margin-left: 0.2em;
+  font-size: 2em;
+  opacity: 0.2;
+}
+
+
+.exercise .mark.done {
+  opacity: 1;
+  color: #2ec4b6;
+}
+
+.progress {
+  font-size: 2em;
+  padding: 0.2em;
+  color: #2ec4b6;
+}
+
+.chead h2 {
+  color: #ff9f1c;
+}
+
+.shead h3 {
+  color: #cc5c1c;
+}
+
+.chead, .shead {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.chead span {
+  font-size: 1.8em;
+}
+
+.shead span {
+  font-size: 1.2em;
+}
+
+.chead span, .shead span {
+  color: #2ec4b6;
+  margin-left: 0.4em;
+}

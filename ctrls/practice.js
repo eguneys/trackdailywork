@@ -1,5 +1,5 @@
 let liapi = require('../liapi');
-let { bookm } = require('../model');
+let { bookm, progressm } = require('../model');
 let html = require('../html');
 
 let cis = require('./cis');
@@ -8,7 +8,6 @@ let cis = require('./cis');
 function Practice(env) {
 
   this.challenge = async (req, res, next) => {
-
     let ctx = await cis.reqToCtx(req);
 
     let { exerciseId } = req.params;
@@ -17,9 +16,14 @@ function Practice(env) {
 
     if (ctx.user) {
 
+      const onProgress = () => {
+        progressm.insert(ctx.user.id, 
+                         exercise.id);
+      };
+
       let game = await liapi.aiFen(ctx.user.token, exercise.fen);
 
-      liapi.listenFen(ctx.user.token, exercise);
+      liapi.listenFen(ctx.user.token, exercise, onProgress);
 
       res.redirect(`https://lichess.org/${game.id}`);
 
@@ -47,7 +51,45 @@ function Practice(env) {
         bookm.exercisesBySection(section.id))
     ).then(_ => _.flat());
 
-    res.send(html.practice(chapters, sections, exercises)(ctx));
+    let _progress = [];
+
+    if (ctx.user) {
+      _progress = await progressm.byUser(ctx.user.id);
+    }
+
+    let exercisesWithMeta = exercises.map(exercise => {
+      return { exercise, meta: {
+        done: _progress
+          .filter(_ => _.exerciseId === exercise.id).length > 0 }
+             };
+    });
+
+    let sectionsWithMeta = sections.map(section => {
+      let total = exercisesWithMeta.filter(_ => _.exercise.sectionId === section.id);
+
+      return { section, meta: {
+        total: total.length,
+        done: total.filter(_ => _.meta.done).length
+      } };
+    });
+
+    let chaptersWithMeta = chapters.map(chapter => {
+      let total = sectionsWithMeta.filter(_ => _.section.chapterId === chapter.id);
+
+      return { chapter, meta: {
+        total: total
+          .reduce((acc, _) => acc + _.meta.total, 0),
+        done: total.filter(_ => _.meta.done)
+          .reduce((acc, _) => acc + _.meta.done, 0)
+      } };
+    });
+
+    let progress = {
+      total: exercises.length,
+      done: exercisesWithMeta.filter(_ => _.meta.done).length
+    };
+
+    res.send(html.practice(chaptersWithMeta, sectionsWithMeta, exercisesWithMeta, progress)(ctx));
   };  
 
 };

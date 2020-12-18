@@ -1,4 +1,4 @@
-let { sessionId } = require('./fixtures');
+let { nextString } = require('./random');
 
 module.exports = (coll) => {
   return new SessionM(coll);
@@ -7,7 +7,7 @@ module.exports = (coll) => {
 function SessionM(coll) {
 
   let newSession = (userid) => ({
-    id: sessionId(),
+    id: nextString(8),
     userid
   });
 

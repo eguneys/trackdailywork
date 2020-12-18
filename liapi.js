@@ -40,7 +40,7 @@ function LiApi() {
     'Authorization': `Bearer ${token}`
   });
 
-  this.listenFen = async (token, { fen, draw }) => {
+  this.listenFen = async (token, { fen, draw }, onFound) => {
 
     let playerColor = fenToMove(fen),
         aiColor = opposite(playerColor);
@@ -86,7 +86,7 @@ function LiApi() {
         let found = await listenGame(data.game.id);
 
         if (found) {
-          console.log('found game');
+          onFound();
           controller.abort();
         }
       };
