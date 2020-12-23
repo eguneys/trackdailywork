@@ -5,14 +5,8 @@ let helper = require('./helper');
 let { layout } = require('./base');
 let tags = require('./tags');
 
-module.exports = (articles) => layout('Free Chess Articles', [
+module.exports = () => layout('Free Chess Articles', [
   tags.div({ cls: ['home'] }, [
-    tags.div({ cls: ['start'] }, [
-      tags.a({ href: '/editor', cls: ['button'] }, ['New article']),
-    ]),
-    tags.div([
-      tags.ul(articles.map(article))
-    ])
   ])
 ], {
   openGraph: openGraph({

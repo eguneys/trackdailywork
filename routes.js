@@ -16,6 +16,7 @@ module.exports = function makeRouter(env) {
   router.get('/callback', auth.callback);
 
   router.get('/practice', practice.index);
+  router.get('/section/:sectionId', practice.section);
 
   router.get('/challenge/:exerciseId', practice.challenge);
 

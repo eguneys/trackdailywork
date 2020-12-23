@@ -33,6 +33,20 @@ function Practice(env) {
     }
   };
 
+  this.section = async (req, res, next) => {
+    let ctx = await cis.reqToCtx(req);
+
+    let { sectionId } = req.params;
+
+    let section = await bookm.sectionById(sectionId);
+    let explanation = await bookm.explanationBySectionId(sectionId);
+
+    if (!explanation) {
+      res.send(html.section.notFound(section)(ctx));
+    }
+
+    res.send(html.section(section, explanation)(ctx));    
+  };
 
   this.index = async (req, res, next) => {
 
@@ -90,7 +104,7 @@ function Practice(env) {
     };
 
     res.send(html.practice(chaptersWithMeta, sectionsWithMeta, exercisesWithMeta, progress)(ctx));
-  };  
+  };
 
 };
 

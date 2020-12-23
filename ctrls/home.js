@@ -4,11 +4,7 @@ let html = require('../html');
 function Home(env) {
 
   this.index = (req, res, next) => {
-    articlem.accepted().then(v_ => 
-      v_.fold(articles =>
-        res.send(html.home(articles)),
-        next)
-    );
+    res.send(html.home());
   };
 
 };

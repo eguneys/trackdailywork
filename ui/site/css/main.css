@@ -114,16 +114,16 @@ md-wrap svg {
   opacity: 0.6;
 }
 
-span[data-line] .moven {
+span.line .moven {
   user-select: none;
 }
 
-span[data-line] .movem {
+span.line .movem {
   user-select: none;
   border-radius: 4px;
 }
 
-span[data-line] span.movem:hover {
+span.line span.movem:hover {
   background: #ED7272;
   cursor: pointer;
 }

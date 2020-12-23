@@ -1,5 +1,7 @@
 let { chapters, sections, exercises } = require('./fixtures');
 
+let { explanations } = require('./chapterfixtures');
+
 function BookM() {
 
   this.chapters = () =>
@@ -23,8 +25,21 @@ function BookM() {
 
   this.exerciseById = exerciseId =>
   Promise.resolve(
-    exercises.filter(_ =>
-      _.id === exerciseId)[0]
+    exercises.find(_ =>
+      _.id === exerciseId)
+  );
+
+  this.sectionById = sectionId =>
+  Promise.resolve(
+    sections.find(_ =>
+      _.id === sectionId)
+  );
+
+
+  this.explanationBySectionId = sectionId =>
+  Promise.resolve(
+    explanations.find(_ =>
+      _.sectionId === sectionId)
   );
   
 };

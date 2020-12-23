@@ -35,7 +35,7 @@ bits.section = exercisesWithMeta => {
 
     return tags.li([
       tags.div({ cls: 'shead' }, [
-        tags.h3(`${section.name}`),
+        tags.h3(tags.a({ href: `/section/${section.id}` }, `${section.name}`)),
         tags.span({}, [`${meta.done}/${meta.total}`]),
       ]),
       tags.ul(
