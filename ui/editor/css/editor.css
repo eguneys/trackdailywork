@@ -7,8 +7,7 @@
   font-size: 1em;
 }
 
-[data-fen],
-[data-ply],
+.ply, 
 .hover-ply {
   width: 60vmin;
   height: 0;
@@ -20,8 +19,7 @@ img {
   margin-left: 1em;
 }
 
-[data-fen],
-[data-ply] {
+.ply {
   position: relative;
   margin-left: 1em;
 }

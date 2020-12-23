@@ -8,12 +8,15 @@ module.exports = function makeRouter(env) {
 
   let { home,
         auth,
-        practice
+        practice,
+        editor
       } = require('./ctrls')(env);
 
   router.get('/', home.index);
   router.get('/auth', auth.lichess);
   router.get('/callback', auth.callback);
+
+  router.get('/editor', editor.index);
 
   router.get('/practice', practice.index);
   router.get('/section/:sectionId', practice.section);

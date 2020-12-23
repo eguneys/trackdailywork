@@ -1738,6 +1738,11 @@ chalk@^3.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+chessm@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/chessm/-/chessm-1.0.0.tgz#6c9997b15c1dee1112b11ef0d605b17426a9036d"
+  integrity sha512-LUvf2Swkjh4mfVPICAlruvGYM2IaOuKtGhmYFSdWnLDngRVG6nlVGnw+gi8nyhGENNTurqECP127qcf3h/6RVQ==
+
 chessmd@^1.3.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/chessmd/-/chessmd-1.4.0.tgz#666b654ccc2a54312adb0ac50abcc868c93f1893"
@@ -1789,12 +1794,12 @@ ci-info@^2.0.0:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
   integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
 
-ciseditor@^1.3.1:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/ciseditor/-/ciseditor-1.4.0.tgz#0e8f9e90f373cd17e1a96ac8e585a6bb83e05295"
-  integrity sha512-D8glJ2M6G/N+mqDbOP0VhiegeqQJQHK4seJ4IxQBFoHgPFkkhhR4o4+dIz8rhPTrY52hdhfCT8s8b1HUFNdFag==
+ciseditor@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ciseditor/-/ciseditor-2.0.0.tgz#0b82e515f18f4903ce83633334c9a7248359d980"
+  integrity sha512-wYXXLe7NrCNd2fptvM/TuaGStxJFPGrdvEMfCgQyjmXRrg8gIw+F7/FYbt/cGPS4CWEWbyrLGHCnvXCrAqoKOA==
   dependencies:
-    chessmd "^1.3.0"
+    chessm "^1.0.0"
 
 class-utils@^0.3.5:
   version "0.3.6"
