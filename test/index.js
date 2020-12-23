@@ -1,5 +1,7 @@
 let model = require('./model');
+let env = require('./env');
 
 (() => {
-  model();
+  // model();
+  env();
 })();

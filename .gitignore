@@ -1,3 +1,4 @@
 node_modules/
 public/compiled/
 public/css/
+secret.json

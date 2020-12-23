@@ -1,3 +1,5 @@
+let { envm } = require('./model');
+
 module.exports = function(app) {
 
   this.setServer = (server) => {};  
@@ -10,9 +12,13 @@ module.exports = function(app) {
 
   this.assetBaseUrl = this.isProd ? this.domain : '';
 
+  this.awaitVariables = async function() {
+    let { client_id, client_secret } = await envm.envByKey("lichessapi");
 
-  this.oauthClient = {
-    id: `P9EVo7U8DUvWEBxe`,
-    secret: `OfiNtgzTpm521SwjD6iRstPA5jDpGY1P`
+    this.oauthClient = {
+      id: client_id,
+      secret: client_secret
+    };
   };
+
 };

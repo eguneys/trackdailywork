@@ -7,6 +7,7 @@ const session = mName('session');
 const liuser = mName('liuser');
 const book = mName('book');
 const progress = mName('progress');
+const envName = mName('env');
 
 const mInit = (m, coll) => m(store(coll));
 
@@ -15,5 +16,6 @@ module.exports = {
   userm: mInit(require('./liuserm'), liuser),
   bookm: mInit(require('./bookm'), book),
   progressm: mInit(require('./progressm'), progress),
+  envm: mInit(require('./envm'), envName),
   terminate: store.terminate
 };

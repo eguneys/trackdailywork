@@ -17,6 +17,7 @@ app.use(cookieParser());
 let Env = require('./env');
 let env = new Env(app);
 
+
 let helper = require('./html/helper');
 helper.environment.setEnv(env);
 
@@ -24,14 +25,15 @@ function boot() {
   env.setServer(server);
 }
 
-
 app.use(cookieSession({
   name: 'rk2',
   secret: Math.random().toString(36).substring(2),
   maxAge: 7 * 24 * 60 * 60 * 1000 // 1 week
 }));
 
-let routes = require('./routes')(env);
-app.use('/', routes);
+env.awaitVariables().then(() => {
+  let routes = require('./routes')(env);
+  app.use('/', routes);
+});
 
 module.exports = { app, server, boot };
