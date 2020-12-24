@@ -22,6 +22,8 @@ Happy blogging
 
   CisEditor(opts.$_, { content });
 
+  console.log(`[CisEditor@${CisEditor.version}]`);
+
   return {
   };
 }

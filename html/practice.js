@@ -68,9 +68,14 @@ bits.progress = (ctx, progress) => {
 
 bits.info = (ctx) => {
 
+  let explanationInfo = tags.frag([
+    tags.p(`Click on sections to open explanations. You can click on notation to see the position on board.`)
+  ]);
+
   if (!ctx.user) {
     return tags.div([
       tags.p(`Select a position to open the analysis board on Lichess.`),
+      explanationInfo
     ]);
   }
 
@@ -81,7 +86,8 @@ bits.info = (ctx) => {
     tags.p('You have to win or make a draw with current color to succeed.'),
     tags.p(`If you can't succeed on the first try, you can rematch the AI and try again.`),
     tags.p(`You might have to abort the opposite color and rematch again to try with the required color.`),
-    tags.p(`After you succeed your progress will be saved on this page. (Unfortunately you have to reload this page to see changes.) `)
+    tags.p(`After you succeed your progress will be saved on this page. (Unfortunately you have to reload this page to see changes.) `),
+    explanationInfo
   ]);
 
 };
