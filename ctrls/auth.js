@@ -2,6 +2,7 @@ const oauth = require('simple-oauth2');
 const fetch = require('node-fetch');
 
 const { userm, sessionm } = require('../model');
+let cis = require('./cis');
 
 function Auth(env) {
   
@@ -25,10 +26,15 @@ function Auth(env) {
     state: Math.random().toString(36).substring(2)
   });
 
-  this.lichess = function(req, res) {
+  this.lichess = async function(req, res) {
 
-    res.redirect(authorizationUri);
-    
+    let ctx = await cis.reqToCtx(req);
+
+    if (ctx.user) {
+      res.redirect('/');
+    } else {
+      res.redirect(authorizationUri);
+    }    
   };
 
 

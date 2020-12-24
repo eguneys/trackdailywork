@@ -25,13 +25,15 @@ function boot() {
   env.setServer(server);
 }
 
-app.use(cookieSession({
-  name: 'rk2',
-  secret: Math.random().toString(36).substring(2),
-  maxAge: 7 * 24 * 60 * 60 * 1000 // 1 week
-}));
-
 env.awaitVariables().then(() => {
+
+  app.use(cookieSession({
+    name: 'rk2',
+    // secret: Math.random().toString(36).substring(2),
+    secret: env.cookieSecret,
+    maxAge: 7 * 24 * 60 * 60 * 1000 // 1 week
+  }));
+
   let routes = require('./routes')(env);
   app.use('/', routes);
 });

@@ -19,6 +19,10 @@ module.exports = function(app) {
       id: client_id,
       secret: client_secret
     };
+
+    let { secret } = await envm.envByKey("cookie-secret");
+
+    this.cookieSecret = secret;
   };
 
 };
