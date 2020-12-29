@@ -28,7 +28,7 @@ function boot() {
 env.awaitVariables().then(() => {
 
   app.use(cookieSession({
-    name: 'rk2',
+    name: 'rk4',
     // secret: Math.random().toString(36).substring(2),
     secret: env.cookieSecret,
     maxAge: 7 * 24 * 60 * 60 * 1000 // 1 week

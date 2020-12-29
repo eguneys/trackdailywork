@@ -1,5 +1,5 @@
 {
-  "name": "chessishard",
+  "name": "trackyourwork",
   "version": "1.0.0",
   "private": true,
   "main": "index.js",
@@ -32,11 +32,6 @@
     "ui",
     "ui/@build/jsProject",
     "ui/common",
-    "ui/article",
-    "ui/moderate",
-    "ui/site",
-    "ui/review",
-    "ui/publish",
-    "ui/editor"
-  ]
+    "ui/site"
+   ]
 }

@@ -5,14 +5,13 @@ let helper = require('./helper');
 let { layout } = require('./base');
 let tags = require('./tags');
 
-module.exports = () => layout('Free Chess Articles', [
+module.exports = () => layout('Track Daily Work', [
   tags.div({ cls: ['home'] }, [
-    tags.p('Read about technique and theory, solve exercises, track your progress'),
-    tags.a({ href: '/practice', cls: 'button' }, `Dvoretsky's Endgame Manual`)
+    tags.p('Track Daily Work'),
   ])
 ], {
   openGraph: openGraph({
-    title: "Free chess articles",
+    title: "Track Daily Work",
     description: trans.siteDescription,
     url: e.env.domain,
     image: helper.assetUrl("images/Chessishard.png")
