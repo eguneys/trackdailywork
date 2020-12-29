@@ -27,9 +27,7 @@ helper.cssTag = name =>
 cssAt(`css/${name}.${e.env.minifiedAssets?'min':'dev'}.css`);
 
 helper.jsModule = jsModule;
-helper.editorTag = () => jsModule('editor');
-helper.sectionTag = () => jsModule('section');
-helper.chessmdTag = () => jsAt('javascripts/vendor/bundle.js');
+helper.trackTag = () => jsModule('track');
 
 helper.embedJsUnsafe = (js) => {
   return `<script>${js}</script>`;
