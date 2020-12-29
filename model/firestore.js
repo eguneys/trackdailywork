@@ -33,6 +33,9 @@ function Coll(name) {
   this.delete = id =>
   coll.doc(id).delete();
 
+  this.fdoc = (id, f) =>
+  f(coll.doc(id));
+
   this.query = fQuery =>
   fQuery(coll).get().then(qSnapshot => {
     let res = [];

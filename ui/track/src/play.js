@@ -3,10 +3,12 @@ import * as dom from 'common/dom';
 
 export default function Play(ctx) {
 
+  let showDays = new ShowDays(this);
   let listWork = new ListWork(this);
   let addWork = new AddWork(this);
 
   this.init = (data) => {
+    showDays.init(data);
     listWork.init(data);
   };
 
@@ -15,22 +17,59 @@ export default function Play(ctx) {
   };
 
   this.reload = (data) => {
+    showDays.init(data);
     listWork.init(data);
   };
 
   this.redraw = () => {
+    showDays.redraw();
     listWork.redraw();
   };
   
   this.wrap = () => {
     
     let $_ = dom.div({ cls: 'tdw-wrap' }, [
+      showDays.wrap(),
       listWork.wrap(),
       addWork.wrap()
     ]);
 
     return $_;
   };
+}
+
+function ShowDays(play) {
+
+  let $_,
+      $daysSpan;
+  let days;
+
+  this.init = (data) => {
+    days = data.days;
+  };
+
+  this.redraw = () => {
+    $daysSpan.innerHTML = `${days}`;
+  };
+
+  const onNextDay = dom.fListen('click', e => {
+    nextDay();
+  });
+
+  const nextDay = () => {
+    xhr.nextDay(play);
+  };
+
+  this.wrap = () => {
+    $_ = dom.div({ cls: 'show-days' }, [
+      dom.span({}, `Day #`),
+      ($daysSpan = dom.span({}, `${days}`)),
+      dom.button({}, 'Next Day', onNextDay)
+    ]);
+
+    return $_;
+  };
+  
 }
 
 function ListWorkItem(play) {

@@ -5,22 +5,34 @@ Add some work that you want to do every day, Check your work as done every day, 
 
 # TO-DO
 
-- [ ] Session
-- [ ] Endpoints
-  - [ ] List work, status
-  - [ ] Add work
-  - [ ] Remove work
-  - [ ] Do work
-- [x] Add work
-    - [x] Text box for work name
-    - [x] Button to add
-- [x] List works
-  - [x] Label for work name
-  - [x] Checkbox for work status
-  - [x] Button for remove work
+- [x] Session
+- [x] Endpoints
+  - [x] List work, status
+  - [x] Add work
+  - [x] Remove work
+  - [x] Do work
+  - [x] Next day for user
+    - [x] Error on too often
+- [ ] Home Page
+  - [x] Label for current day
+  - [x] Button for next day
+  - [x] List works
+    - [x] Label for work name
+    - [x] Checkbox for work status
+    - [x] Button for remove work
+  - [x] Add work
+      - [x] Text box for work name
+      - [x] Button to add
 - [ ] Style
-- [ ] Reset daily
-- [ ] Save daily progress
+  - [ ] Alignment
+  - [ ] Font
+  - [ ] Color
+  - [ ] Layout
+  - [ ] Spinner
+  - [ ] Flash Error message
+- [ ] Daily
+  - [ ] Reset daily
+  - [ ] Save daily progress
 - [ ] Show monthly progress
 
 
@@ -35,7 +47,6 @@ Add some work that you want to do every day, Check your work as done every day, 
         Id = 1
         Name = Get up
         Status = Done
-        Days = 1
 
     Work Done Status
         Work Id
@@ -50,6 +61,7 @@ Add some work that you want to do every day, Check your work as done every day, 
             Default Work Done Status
 
     User
+      LastDaysUpdated
       Days
       Work []
       Work Done Status []

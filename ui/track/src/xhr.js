@@ -7,6 +7,12 @@ let data = {
   status: []
 };
 
+export const nextDay = (play) => {
+  xhr.text(`/work/next`).then(_ => {
+    play.askReload();
+  });
+};
+
 export const addWork = (play, name) => {
 
   xhr.text('/work/add', {

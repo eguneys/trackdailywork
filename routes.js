@@ -14,6 +14,7 @@ module.exports = function makeRouter(env) {
 
   router.get('/work', work.list);
   router.post('/work/add', work.add);
+  router.get('/work/next', work.next);
   router.get('/work/:workId/remove', work.remove);
   router.get('/work/:workId/do', work.do);
 

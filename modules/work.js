@@ -24,6 +24,7 @@ res.jsonView = async function(userId) {
   let status = await statusm.allByUserIdForDay(userId, days);
 
   return {
+    days,
     works,
     status
   };

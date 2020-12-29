@@ -7,6 +7,27 @@ let { userm, workm, statusm } = require('../model');
 
 function Work(env) {
 
+  this.next = async (req, res, next) => {
+    let ctx = await reqToCtx(req);
+
+    if (!ctx.user) {
+      res.send({ error: 'unauthorized' });
+      return;
+    }
+
+    let { lastDaysUpdated } = await userm.byId(ctx.user.id);
+
+    if (Date.now() - lastDaysUpdated < 1000 * 60 * 60) {
+
+      res.send({ error: 'Wait at least 1 hour for a next day' });
+      return;
+    }
+
+    await userm.nextDayForUserId(ctx.user.id);
+
+    res.send({ ok: true });
+  };
+
   this.list = async (req, res, next) => {
 
     let ctx = await reqToCtx(req);

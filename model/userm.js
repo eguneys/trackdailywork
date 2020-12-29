@@ -9,16 +9,21 @@ function UserM(coll) {
   let newUser = (username) => ({
     id: username,
     username,
-    days: 1
+    days: 1,
+    lastDaysUpdated: Date.now()
   });
 
   this.insert = (user) =>
   coll.insert(newUser(user));
 
-  this.nextDay = () => coll.map(_ =>
-    _.set({days: increment(1) }, { merge: true })
-  );
-
+  this.nextDayForUserId = (userId) => 
+  coll.fdoc(userId, _ =>
+            _.set({
+              lastDaysUpdated: Date.now(),
+              days: increment(1)
+            }, { merge: true })
+           );
+  
   this.byId = (id) =>
   coll.one(id);
 
