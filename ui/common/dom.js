@@ -10,7 +10,7 @@ exports.findTag = findTag;
 exports.findId = findId;
 exports.parse = parse;
 exports.bodyData = bodyData;
-exports.fShow = exports.fHide = exports.fListen = exports.fAttribute = exports.fAddClass = exports.fTranslateAbs = exports.replaceChildren = exports.addChildren = exports.removeChildren = exports.updateChildren = exports.textNode = exports.li = exports.ul = exports.button = exports.input = exports.span = exports.div = void 0;
+exports.fShow = exports.fHide = exports.fListen = exports.fAttribute = exports.fAddClass = exports.fTranslateAbs = exports.replaceChildren = exports.addChildren = exports.removeChildren = exports.updateChildren = exports.textNode = exports.td = exports.th = exports.tr = exports.tbody = exports.thead = exports.table = exports.li = exports.ul = exports.button = exports.input = exports.span = exports.div = void 0;
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -100,6 +100,66 @@ var li = function li() {
 };
 
 exports.li = li;
+
+var table = function table() {
+  for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+    args[_key4] = arguments[_key4];
+  }
+
+  return tag.apply(void 0, ['table'].concat(args));
+};
+
+exports.table = table;
+
+var thead = function thead() {
+  for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+    args[_key5] = arguments[_key5];
+  }
+
+  return tag.apply(void 0, ['thead'].concat(args));
+};
+
+exports.thead = thead;
+
+var tbody = function tbody() {
+  for (var _len6 = arguments.length, args = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
+    args[_key6] = arguments[_key6];
+  }
+
+  return tag.apply(void 0, ['tbody'].concat(args));
+};
+
+exports.tbody = tbody;
+
+var tr = function tr() {
+  for (var _len7 = arguments.length, args = new Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {
+    args[_key7] = arguments[_key7];
+  }
+
+  return tag.apply(void 0, ['tr'].concat(args));
+};
+
+exports.tr = tr;
+
+var th = function th() {
+  for (var _len8 = arguments.length, args = new Array(_len8), _key8 = 0; _key8 < _len8; _key8++) {
+    args[_key8] = arguments[_key8];
+  }
+
+  return tag.apply(void 0, ['th'].concat(args));
+};
+
+exports.th = th;
+
+var td = function td() {
+  for (var _len9 = arguments.length, args = new Array(_len9), _key9 = 0; _key9 < _len9; _key9++) {
+    args[_key9] = arguments[_key9];
+  }
+
+  return tag.apply(void 0, ['td'].concat(args));
+};
+
+exports.td = td;
 
 var textNode = function textNode(content) {
   return document.createTextNode(content);

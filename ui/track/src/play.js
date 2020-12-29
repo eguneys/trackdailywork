@@ -109,10 +109,10 @@ function ListWorkItem(play) {
       checkboxOpts.checked = true;
     }
 
-    $_ = dom.li({ cls: 'work-item' }, [
-      dom.input(checkboxOpts, [], onCheck),
-      dom.span({}, `${work.name}`),
-      dom.button({}, 'Remove', onRemove)
+    $_ = dom.tr({ cls: 'work-item' }, [
+      dom.td({}, dom.input(checkboxOpts, [], onCheck)),
+      dom.td({}, dom.span({}, `${work.name}`)),
+      dom.td({}, dom.button({}, 'Remove', onRemove))
     ]);
 
     return $_;
@@ -122,7 +122,7 @@ function ListWorkItem(play) {
 
 function ListWork(play) {
 
-  let $_;
+  let $_, $body;
   let works;
 
   this.init = data => {
@@ -137,7 +137,7 @@ function ListWork(play) {
   };
 
   this.redraw = () => {
-    dom.replaceChildren($_, 
+    dom.replaceChildren($body,
                         works
                         .map(_ => 
                           _.wrap()));
@@ -145,9 +145,16 @@ function ListWork(play) {
 
   this.wrap = () => {
 
-    $_ = dom.ul({ cls: 'list-work' }, 
-                     works.map(_ => _.wrap()));
-
+    $_ = dom.table({ cls: 'list-work' }, [
+      dom.thead({}, [
+        dom.tr({}, [
+          dom.th({}, 'Done'),
+          dom.th({}, 'Name'),
+          dom.th({}, 'Options')
+        ])
+      ]),
+      ($body = dom.tbody({}, works.map(_ => _.wrap())))
+    ]);
     return $_;
     
   };

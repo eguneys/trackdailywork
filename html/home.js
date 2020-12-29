@@ -7,11 +7,18 @@ let tags = require('./tags');
 
 module.exports = (data) => layout('Track Daily Work', [
   tags.div({ cls: ['home'] }, [
-    tags.p('Track Daily Work'),
+    tags.p(`Hi'ya Buddy`),
+    tags.p(`Add some of your daily work.`),
+    tags.p(`Check your work when you are done.`),
+    tags.p(`Click on the next day when you want to start a new daily routine.`),
+    tags.p(`Your daily work progress will be saved.`),
+    tags.p(`Later you can view your progress over a month. (to be implemented)`),
+    tags.small(`(Your session is anonymous, and tracked by a cookie.)`),
     tags.div({ id: 'app' })
   ])
 ], {
 
+  moreCss: helper.cssTag('track'),
   moreJs: tags.frag([
     helper.trackTag(),
     helper.embedJsUnsafeLoadThen(`

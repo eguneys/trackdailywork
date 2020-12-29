@@ -43,6 +43,13 @@ export const ul = (...args) => tag('ul', ...args);
 export const li = (...args) => tag('li', ...args);
 
 
+export const table = (...args) => tag('table', ...args);
+export const thead = (...args) => tag('thead', ...args);
+export const tbody = (...args) => tag('tbody', ...args);
+export const tr = (...args) => tag('tr', ...args);
+export const th = (...args) => tag('th', ...args);
+export const td = (...args) => tag('td', ...args);
+
 export const textNode = (content) => {
   return document.createTextNode(content);
 };

@@ -3,7 +3,8 @@
   --color-font: #2c2c2c;
   --color-secondary: #ff9f2e;
   --color-primary: #2ec4b6;
-  --color-primary-variant: #ffffff;
+  --color-link: #2e52e2;
+  --color-primary-variant: #fefefe;
 
   --site-header-height: 50px;
 }
@@ -21,4 +22,18 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+
+header h1 {
+  margin: 0;
+}
+
+
+header a {
+  color: var(--color-link);
+}
+
+.home {
+  padding: 0 1em;
 }

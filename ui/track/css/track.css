@@ -1,0 +1,20 @@
+.tdw-wrap {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  font-size: 1.2em;
+  background: #f9f9f9;
+  padding: 0.2em;
+}
+
+.tdw-wrap > * {
+  margin: 0.3em 0;
+}
+
+.show-days, .add-work {
+  display: flex;
+}
+
+.show-days *:last-child {
+  margin-left: 1em;
+}

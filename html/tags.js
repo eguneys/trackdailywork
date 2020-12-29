@@ -58,6 +58,11 @@ tags.date = tag('date');
 
 tags.nav = tag('nav');
 
+tags.table = tag('table');
+tags.tr = tag('tr');
+tags.td = tag('td');
+tags.thead = tag('thead');
+
 tags.link = (href, rel='stylesheet') => {
   return `<link href=${href} rel=${rel}>`;
 };
@@ -80,6 +85,10 @@ tags.h3 = tag('h3');
 tags.p = tag('p');
 tags.br = () => `<br/>`;
 tags.span = tag('span');
+
+tags.small = tag('small');
+tags.i = tag('i');
+
 
 tags.section = tag('section');
 
