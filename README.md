@@ -65,3 +65,8 @@ Add some work that you want to do every day, Check your work as done every day, 
       Days
       Work []
       Work Done Status []
+
+
+# gcloud Reference
+
+[gcloud configurations](https://cloud.google.com/sdk/docs/configurations)

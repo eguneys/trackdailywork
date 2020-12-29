@@ -11,7 +11,8 @@
     "assets": "./ui/build prod && ./ui/build prod css",
     "prod": "NODE_ENV=production node ./bin/www",
     "preview": "yarn assets && yarn prod",
-    "gcp-build": "yarn assets"
+    "gcp-build": "yarn assets",
+    "deploy": "gcloud app deploy"
   },
   "dependencies": {
     "@google-cloud/firestore": "^4.4.0",

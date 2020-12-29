@@ -15,7 +15,7 @@ ls -l node_modules ui/node_modules ui/*/node_modules | grep /yarn/link/ || true
 mkdir -p public/compiled
 
 apps1="common model"
-apps2=" site track"
+apps2="site track"
 
 yarn install --non-interactive
 
