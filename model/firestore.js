@@ -1,4 +1,4 @@
-const {Firestore} = require('@google-cloud/firestore');
+const {Firestore, FieldValue} = require('@google-cloud/firestore');
 
 const firestore = new Firestore();
 
@@ -9,6 +9,9 @@ module.exports = (name) => {
 module.exports.terminate = () => {
   return firestore.terminate();
 };
+
+module.exports.increment = (by) =>
+FieldValue.increment(by);
 
 function Coll(name) {
   
@@ -27,6 +30,9 @@ function Coll(name) {
   this.one = id =>
   coll.doc(id).get().then(_ => _.exists && $doc(_));
 
+  this.delete = id =>
+  coll.doc(id).delete();
+
   this.query = fQuery =>
   fQuery(coll).get().then(qSnapshot => {
     let res = [];
@@ -42,12 +48,20 @@ function Coll(name) {
   this.update = (id, update) =>
   coll.doc(id).update(update);
 
+  this.map = fRef =>
+  coll.listDocuments()
+    .then(refs =>
+      Promise.all(refs.map(ref =>
+        fRef(ref)
+      ))
+    );
+
   this.drop = () =>
   coll.listDocuments()
     .then(refs =>
-      refs.forEach(ref =>
+      Promise.all(refs.map(ref =>
         ref.delete()
-      )
+      ))
     );
   
 }

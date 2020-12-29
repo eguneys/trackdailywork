@@ -5,7 +5,7 @@ let helper = require('./helper');
 let { layout } = require('./base');
 let tags = require('./tags');
 
-module.exports = () => layout('Track Daily Work', [
+module.exports = (data) => layout('Track Daily Work', [
   tags.div({ cls: ['home'] }, [
     tags.p('Track Daily Work'),
     tags.div({ id: 'app' })
@@ -15,7 +15,8 @@ module.exports = () => layout('Track Daily Work', [
   moreJs: tags.frag([
     helper.trackTag(),
     helper.embedJsUnsafeLoadThen(`
-TrackDailyWork.boot(${helper.safeJsonValue({
+TDWTrack.boot(${helper.safeJsonValue({
+data
 })})`)
   ]),
   openGraph: openGraph({
@@ -25,8 +26,3 @@ TrackDailyWork.boot(${helper.safeJsonValue({
     image: helper.assetUrl("images/Chessishard.png")
   })
 });
-
-function article(article) {
-  return tags.li([tags.a({ href: '/' + article.id }, [article.title]), 
-                  tags.date([helper.date(article.updatedAt)])]);
-}

@@ -2,6 +2,7 @@ let Project = require('../project');
 let { envm, terminate } = require('../model');
 
 let env = require('./env');
+let status = require('./status');
 
 (async () => {
 
@@ -16,6 +17,8 @@ let env = require('./env');
 
   // model();
   await env();
+
+  await status();
 
   terminate();
 

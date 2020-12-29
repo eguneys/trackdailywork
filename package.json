@@ -32,6 +32,7 @@
     "ui",
     "ui/@build/jsProject",
     "ui/common",
-    "ui/site"
+    "ui/site",
+    "ui/track"
    ]
 }

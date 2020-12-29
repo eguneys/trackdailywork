@@ -1,5 +1,5 @@
 let trans = {};
 
-trans.siteDescription = `Track Daily Work, Stay Disciplined, Achieve Goals, Simple Free Daily Work Tracker`;
+trans.siteDescription = `Simple daily work tracking website. Add some work that you want to do every day, Check your work as done every day, Track your monthly progress.`;
 
 module.exports = trans;

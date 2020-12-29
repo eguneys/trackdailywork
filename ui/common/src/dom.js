@@ -36,6 +36,12 @@ export function tag(name, klass, children = [], fStyle) {
 
 export const div = (klass, children, fStyle) => tag('div', klass, children, fStyle);
 export const span = (klass, children, fStyle) => tag('span', klass, children, fStyle);
+export const input = (klass, children, fStyle) => tag('input', klass, children, fStyle);
+
+export const button = (...args) => tag('button', ...args);
+export const ul = (...args) => tag('ul', ...args);
+export const li = (...args) => tag('li', ...args);
+
 
 export const textNode = (content) => {
   return document.createTextNode(content);
@@ -48,6 +54,21 @@ export const updateChildren = (el, fupdate) => {
     fupdate(el);
     el = el.nextSibling;
   }
+};
+
+export const removeChildren = (el) => {
+  while (el.firstChild) {
+    el.removeChild(el.firstChild);
+  }
+};
+
+export const addChildren = (el, children) => {
+  children.forEach(_ => el.appendChild(_));
+};
+
+export const replaceChildren = (el, children) => {
+  removeChildren(el);
+  addChildren(el, children);
 };
 
 export const fTranslateAbs = (pos) => {
@@ -75,7 +96,7 @@ export const fAttribute = attributes => {
 export const fListen = (event, f) => {
   return el => {
     el.addEventListener(event, _ => {
-      f(el, _);
+      f(_, el);
     });
   };
 };

@@ -10,7 +10,7 @@ exports.findTag = findTag;
 exports.findId = findId;
 exports.parse = parse;
 exports.bodyData = bodyData;
-exports.fShow = exports.fHide = exports.fListen = exports.fAttribute = exports.fAddClass = exports.fTranslateAbs = exports.updateChildren = exports.textNode = exports.span = exports.div = void 0;
+exports.fShow = exports.fHide = exports.fListen = exports.fAttribute = exports.fAddClass = exports.fTranslateAbs = exports.replaceChildren = exports.addChildren = exports.removeChildren = exports.updateChildren = exports.textNode = exports.li = exports.ul = exports.button = exports.input = exports.span = exports.div = void 0;
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -65,6 +65,42 @@ var span = function span(klass, children, fStyle) {
 
 exports.span = span;
 
+var input = function input(klass, children, fStyle) {
+  return tag('input', klass, children, fStyle);
+};
+
+exports.input = input;
+
+var button = function button() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  return tag.apply(void 0, ['button'].concat(args));
+};
+
+exports.button = button;
+
+var ul = function ul() {
+  for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    args[_key2] = arguments[_key2];
+  }
+
+  return tag.apply(void 0, ['ul'].concat(args));
+};
+
+exports.ul = ul;
+
+var li = function li() {
+  for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+    args[_key3] = arguments[_key3];
+  }
+
+  return tag.apply(void 0, ['li'].concat(args));
+};
+
+exports.li = li;
+
 var textNode = function textNode(content) {
   return document.createTextNode(content);
 };
@@ -81,6 +117,29 @@ var updateChildren = function updateChildren(el, fupdate) {
 };
 
 exports.updateChildren = updateChildren;
+
+var removeChildren = function removeChildren(el) {
+  while (el.firstChild) {
+    el.removeChild(el.firstChild);
+  }
+};
+
+exports.removeChildren = removeChildren;
+
+var addChildren = function addChildren(el, children) {
+  children.forEach(function (_) {
+    return el.appendChild(_);
+  });
+};
+
+exports.addChildren = addChildren;
+
+var replaceChildren = function replaceChildren(el, children) {
+  removeChildren(el);
+  addChildren(el, children);
+};
+
+exports.replaceChildren = replaceChildren;
 
 var fTranslateAbs = function fTranslateAbs(pos) {
   return function (el) {
@@ -113,7 +172,7 @@ exports.fAttribute = fAttribute;
 var fListen = function fListen(event, f) {
   return function (el) {
     el.addEventListener(event, function (_) {
-      f(el, _);
+      f(_, el);
     });
   };
 };

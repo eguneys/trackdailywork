@@ -5,7 +5,7 @@ let trans = require('./trans');
 
 let doctype = tags.raw('<!DOCTYPE html>');
 let htmlTag = tags.html();
-let topComment = tags.raw('<!-- TrackYourWork is open source! See https://github.com/eguneys/trackyourwork -->');
+let topComment = tags.raw('<!-- TrackDailyWork is open source! See https://github.com/eguneys/trackdailywork -->');
 let viewport = tags.raw('<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">');
 
 
@@ -32,7 +32,7 @@ base.layout = function layout(title, body, {
       topComment,
       tags.head([
         viewport,
-        tags.headTitle(`${title} • trackyourwork.com`),
+        tags.headTitle(`${title} • trackdailywork.com`),
         helper.cssTag('fonts'),
         helper.cssTag('site'),
         //fonts,
@@ -63,7 +63,7 @@ function siteHeader(buttons) {
   return tags.header({ id: 'top' }, [
     tags.div({ cls: 'site-title-nav' }, [
       tags.h1({ cls: 'site-title' }, [
-        tags.a({ href: "/" }, ['📘 Track Your Work']
+        tags.a({ href: "/" }, ['📘 Track Daily Work']
               )
       ]),
       // tags.nav({ id: 'topnav' }, [

@@ -11,8 +11,8 @@ function SessionM(coll) {
     userid
   });
 
-  this.insert = (userid) =>
-  coll.insert(newSession(userid));
+  this.insert = (userId) =>
+  coll.insert(newSession(userId));
 
   this.byId = (name) =>
   coll.one(name);

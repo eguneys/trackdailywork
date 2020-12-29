@@ -2,9 +2,9 @@ import { loadCssPath } from './component/assets';
 import { redirect, reload } from './component/reload';
 
 export default function() {
-  const cs = window.cishard;
+  const tdw = window.tdw;
 
-  cs.loadCssPath = loadCssPath;
-  cs.redirect = redirect;
-  cs.reload = reload;
+  tdw.loadCssPath = loadCssPath;
+  tdw.redirect = redirect;
+  tdw.reload = reload;
 }

@@ -1,45 +1,55 @@
-# chessishard
+# Track Daily Work
 
-[Firestore docs](https://googleapis.dev/nodejs/firestore/latest/DocumentSnapshot.html)
+Simple daily work tracking website.
+Add some work that you want to do every day, Check your work as done every day, Track your monthly progress.
 
-### TODO
+# TO-DO
 
-- [ ] Single page for /editor /review
-- [ ] Edit article on single page
-- [ ] View count
-- [ ] Loading indicator
-- [ ] Asset versionx
-- [ ] CDN for [static files](https://cloud.google.com/appengine/docs/standard/nodejs/serving-static-files)
-- [ ] Delay game gif load
-
-
-
-
-
-
-
-
-
-
-
-
+- [ ] Session
+- [ ] Endpoints
+  - [ ] List work, status
+  - [ ] Add work
+  - [ ] Remove work
+  - [ ] Do work
+- [x] Add work
+    - [x] Text box for work name
+    - [x] Button to add
+- [x] List works
+  - [x] Label for work name
+  - [x] Checkbox for work status
+  - [x] Button for remove work
+- [ ] Style
+- [ ] Reset daily
+- [ ] Save daily progress
+- [ ] Show monthly progress
 
 
-### Single Draft for an Anonymous Session
+# Model
 
-I want to build an app where user can publish an article. User is anonymous so there is no login or authorization. I set a cookie on the user to identify a session. A session has a draft. 
+    Work
+        Id
+        User Id
+        Name
 
-On every endpoint, restore session:
+    Default Work
+        Id = 1
+        Name = Get up
+        Status = Done
+        Days = 1
 
-    If user has cookie
-        Restore Session
-    Otherwise
-        Create Session
-        Set Anonymous Cookie
-    
-Endpoints:
+    Work Done Status
+        Work Id
+        User Id
+        Day
 
-    GET /editor
+    Default Work Done Status
+        Work Id = 1
 
-        Get or create a draft for the current session
-        Render draft
+    ? Daily Progress
+        Work Done Status []
+            Default Work Done Status
+
+    User
+      Days
+      Work []
+      Work Done Status []
